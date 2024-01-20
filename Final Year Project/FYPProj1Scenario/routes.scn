@@ -1,0 +1,224 @@
+<scenario name="my scenario" simtime="0" simtimemax="1000" version="1" timelinezoom="1" hscrolloffset="0">
+  <routes>
+    <route name="Route1" color="16711680">
+      <points>
+        <point x="48,8232805749718" y="9,09601431274299" />
+        <point x="48,8237221298078" y="9,0959776504503" />
+        <point x="48,8249396323632" y="9,09585543710462" />
+        <point x="48,8252853993621" y="9,09582338309753" />
+        <point x="48,8252594242546" y="9,09513052340775" />
+        <point x="48,8252383206542" y="9,0942404082893" />
+        <point x="48,8252318274197" y="9,09416643750384" />
+        <point x="48,8247935321452" y="9,09419849151089" />
+        <point x="48,8242659494158" y="9,09424533967496" />
+        <point x="48,823707513392" y="9,09430944768902" />
+        <point x="48,823339008879" y="9,0943045163032" />
+        <point x="48,8229656287619" y="9,09400863316145" />
+        <point x="48,8223584763386" y="9,09404315286119" />
+        <point x="48,8222870466751" y="9,09427246229611" />
+        <point x="48,8222821764625" y="9,09458560528785" />
+        <point x="48,8222545785822" y="9,09499244460784" />
+        <point x="48,8222659424171" y="9,09520202849992" />
+        <point x="48,8223503593957" y="9,09534997007083" />
+        <point x="48,8224461398068" y="9,09541900947099" />
+        <point x="48,8225825051344" y="9,09555462257766" />
+        <point x="48,8226928958421" y="9,09567051014152" />
+        <point x="48,8227951693691" y="9,09584064294808" />
+        <point x="48,8228390008167" y="9,09600337867606" />
+        <point x="48,8228601035128" y="9,09608474654014" />
+        <point x="48,8230127015228" y="9,09604776114744" />
+        <point x="48,8231620523168" y="9,09600091298333" />
+        <point x="48,8232375828522" y="9,09602150459079" />
+        <point x="48,8232627100448" y="9,09600938616408" />
+      </points>
+      <stations>
+        <station name="DUT" offset="9" color="16711680" trackingid="4" length="5" width="2.6" height="2">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="50" />
+              <keypoint time="28,88" value="0" />
+            </keypoints>
+          </attribute>
+          <attribute name="PathHistory" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="19,25" value="5" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="17,67" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="36,1" value="0" comment="Vehicle_Events_DENM off" />
+              <keypoint time="380,26" value="0" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="2" comment="Accident" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" comment="MultiVehicleAccident" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="4" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM2" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="12,79" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="20,46" value="0" comment="Vehicle_Events_DENM off" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="18,44" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" comment="TrafficCondition" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="4" comment="TrafficJamStronglyIncreasing" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="2" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+        <station name="Vehicle2" offset="83" color="55295" trackingid="2" length="4" width="2" height="2">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="30" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="40,47" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="99,51" value="0" comment="Vehicle_Events_DENM off" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="11" comment="HazardousLocation_AnimalOnTheRoad" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="4" comment="LargeAnimals" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="2" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+    <route name="Route2" color="255">
+      <points>
+        <point x="48,8234541709302" y="9,09480708118012" />
+        <point x="48,8234391607252" y="9,09434078999093" />
+        <point x="48,823428205693" y="9,09432453457404" />
+        <point x="48,8234184931461" y="9,09421188179541" />
+        <point x="48,8234043658018" y="9,09400669280577" />
+        <point x="48,8233981850874" y="9,09391683880377" />
+      </points>
+      <stations>
+        <station name="Vehicle3" offset="0" color="139" trackingid="3" length="4" width="2.5" height="1.5">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="31,29" value="50" />
+            </keypoints>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+    <route name="Route3" color="16711935">
+      <points>
+        <point x="48,8236752346455" y="9,10027070697355" />
+        <point x="48,8239365883741" y="9,10066138156461" />
+        <point x="48,8241520253179" y="9,10094347747373" />
+        <point x="48,8242403198432" y="9,10108295234251" />
+        <point x="48,8240990485317" y="9,10132435115385" />
+        <point x="48,823880077221" y="9,10171058925199" />
+        <point x="48,8237176140174" y="9,10198417457151" />
+        <point x="48,8232372808281" y="9,10288003238248" />
+        <point x="48,8230289008819" y="9,10341110976743" />
+        <point x="48,8228593711696" y="9,10374906810331" />
+      </points>
+      <stations>
+        <station name="Vehicle1" offset="1" color="16711680" trackingid="1" length="0" width="0" height="0">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="50" />
+              <keypoint time="17,75" value="0" />
+              <keypoint time="40,91" value="0" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="12,96" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="31,8" value="0" comment="Vehicle_Events_DENM off" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="10" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="10" value="98" comment="SignalViolation" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="10" value="1" comment="StopSignViolation" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+  </routes>
+  <tapes />
+</scenario>

@@ -1,0 +1,383 @@
+<scenario name="my scenario" simtime="0" simtimemax="100" version="1" timelinezoom="1" hscrolloffset="0">
+  <routes>
+    <route name="Route1" color="16711680">
+      <points>
+        <point x="48,8251772744378" y="9,09294155819703" />
+        <point x="48,8252814587849" y="9,09566039021302" />
+        <point x="48,8252964685053" y="9,09608330209542" />
+        <point x="48,8253406147268" y="9,09727822621155" />
+        <point x="48,8253600390734" y="9,09744452317048" />
+        <point x="48,8253856438831" y="9,09758936245728" />
+        <point x="48,8254315559225" y="9,09778382261086" />
+        <point x="48,8254704045383" y="9,09791256864358" />
+        <point x="48,8255269107741" y="9,09806813676644" />
+        <point x="48,8255781202082" y="9,09817006070901" />
+        <point x="48,8256487538261" y="9,09829076011468" />
+        <point x="48,8258085615275" y="9,09854288776208" />
+        <point x="48,8258491756832" y="9,09861128409196" />
+        <point x="48,8259277548164" y="9,09875075896073" />
+        <point x="48,8260610747566" y="9,0989800878315" />
+        <point x="48,8261855652414" y="9,09921478112031" />
+        <point x="48,8262376569127" y="9,09931402285386" />
+        <point x="48,8263294787804" y="9,09954201062012" />
+        <point x="48,826352434373" y="9,09960370142747" />
+        <point x="48,8264424908268" y="9,09989472110558" />
+        <point x="48,8265210691899" y="9,10018842299271" />
+        <point x="48,8265493221173" y="9,10036410768319" />
+        <point x="48,8266040620616" y="9,10076643903542" />
+        <point x="48,8266279004307" y="9,10104002435494" />
+        <point x="48,8266826403444" y="9,10167302568246" />
+        <point x="48,8267797594199" y="9,1028156467228" />
+        <point x="48,8268035976568" y="9,10308923204232" />
+        <point x="48,8267956505495" y="9,10310800750542" />
+        <point x="48,8267779910293" y="9,10311471302796" />
+        <point x="48,8265122369987" y="9,10318445046235" />
+        <point x="48,8248470283845" y="9,10359616954613" />
+        <point x="48,8248364331786" y="9,10359616954613" />
+        <point x="48,8248258379706" y="9,10358812291909" />
+        <point x="48,8248196574315" y="9,10356666524697" />
+        <point x="48,8248002328751" y="9,10339768607903" />
+        <point x="48,8247631496103" y="9,10307313878823" />
+        <point x="48,8244029105832" y="9,10145174343873" />
+        <point x="48,8243923139641" y="9,10140212257195" />
+        <point x="48,8243817186621" y="9,10136591275025" />
+        <point x="48,8243631768782" y="9,10130958636094" />
+        <point x="48,8243137320881" y="9,10120766241837" />
+        <point x="48,8242722337439" y="9,10113524277497" />
+        <point x="48,8242192570847" y="9,10104672987748" />
+        <point x="48,8239914562174" y="9,10071413595963" />
+        <point x="48,8238501839579" y="9,10052235801507" />
+        <point x="48,8237424637698" y="9,10035471995164" />
+        <point x="48,8236674126928" y="9,10021792729188" />
+        <point x="48,8235835316847" y="9,10001542051125" />
+        <point x="48,82355880891" y="9,09993227203179" />
+        <point x="48,8235340861241" y="9,09982766588021" />
+        <point x="48,823517309941" y="9,0997351296692" />
+        <point x="48,8234908212194" y="9,09960504253197" />
+        <point x="48,8234749279797" y="9,09928720076371" />
+        <point x="48,8234510881041" y="9,09875344116974" />
+        <point x="48,8234404926119" y="9,09817542512704" />
+        <point x="48,8234360778191" y="9,09804802019883" />
+        <point x="48,8234272483074" y="9,09784283120919" />
+        <point x="48,8233663241074" y="9,09664656598855" />
+        <point x="48,8233539620456" y="9,09604172785569" />
+        <point x="48,8233495479428" y="9,09602429349709" />
+        <point x="48,8233424842615" y="9,096008200243" />
+        <point x="48,8233230591318" y="9,09600954134751" />
+        <point x="48,8232939214292" y="9,09601356466103" />
+        <point x="48,8231111481426" y="9,09603502233315" />
+        <point x="48,822874513096" y="9,09610341866303" />
+        <point x="48,8228603856669" y="9,09610610087205" />
+        <point x="48,8228533219166" y="9,09609671314049" />
+        <point x="48,8228462581653" y="9,0960792787819" />
+        <point x="48,8228427262893" y="9,09603234012414" />
+        <point x="48,822824183936" y="9,09594114501763" />
+        <point x="48,8228091734546" y="9,09589420635987" />
+        <point x="48,8227959289084" y="9,09585665543366" />
+        <point x="48,8227720887164" y="9,0958097167759" />
+        <point x="48,8227500144545" y="9,09577082474518" />
+        <point x="48,8227270572118" y="9,09573461492348" />
+        <point x="48,8227058659015" y="9,09569706399727" />
+        <point x="48,822679376751" y="9,0956662185936" />
+        <point x="48,8225177922969" y="9,09550796826172" />
+        <point x="48,8224224309316" y="9,09541945536423" />
+        <point x="48,8223041117226" y="9,09530277927209" />
+        <point x="48,8222882181065" y="9,09528132159997" />
+        <point x="48,8222767393805" y="9,09524913509179" />
+        <point x="48,8222617287353" y="9,09520353753853" />
+        <point x="48,8222590797974" y="9,09517537434388" />
+        <point x="48,8222537819212" y="9,09510027249146" />
+        <point x="48,8222908670023" y="9,09420441468049" />
+        <point x="48,8222996967553" y="9,09415479381371" />
+        <point x="48,8223200052591" y="9,09410517294694" />
+        <point x="48,822335898865" y="9,09407298643876" />
+        <point x="48,8223570903317" y="9,09404616434861" />
+        <point x="48,822388877515" y="9,09402336557198" />
+        <point x="48,8224188987252" y="9,09402068336297" />
+        <point x="48,8227182259393" y="9,09398313243676" />
+        <point x="48,8228427247037" y="9,09399520237733" />
+        <point x="48,8229115962414" y="9,09401129563141" />
+        <point x="48,8229937121818" y="9,09404616434861" />
+        <point x="48,8230643489746" y="9,09411858399201" />
+        <point x="48,8231544113373" y="9,09419770915795" />
+        <point x="48,8232842064919" y="9,09430231530953" />
+        <point x="48,8234078206952" y="9,09432109077263" />
+        <point x="48,8234210647866" y="9,09429963310052" />
+        <point x="48,8234113511388" y="9,09422855456162" />
+        <point x="48,8234051691126" y="9,09413065393258" />
+        <point x="48,8233883851913" y="9,09382085879136" />
+        <point x="48,8233830874345" y="9,09366797287751" />
+        <point x="48,8233822044751" y="9,0935231335907" />
+        <point x="48,8233936829211" y="9,09341718633462" />
+        <point x="48,8234104591456" y="9,09322272618104" />
+        <point x="48,8234166398585" y="9,09317176420975" />
+        <point x="48,8234387138268" y="9,09312214334298" />
+        <point x="48,8234572559526" y="9,09307922799874" />
+        <point x="48,8234934572262" y="9,09304167707253" />
+        <point x="48,8235561471748" y="9,09300546725083" />
+        <point x="48,8236117734015" y="9,0929813273697" />
+        <point x="48,8236594509965" y="9,09295316417504" />
+        <point x="48,8237265555049" y="9,09294511754799" />
+        <point x="48,8239049117879" y="9,09292500098038" />
+        <point x="48,8241141705612" y="9,09289549668122" />
+        <point x="48,8244788259727" y="9,09287806232262" />
+        <point x="48,8248982197544" y="9,09284855802346" />
+        <point x="48,8250951123927" y="9,09283380587387" />
+        <point x="48,8251286636975" y="9,09284855802346" />
+        <point x="48,825152502768" y="9,0928740390091" />
+        <point x="48,8251666296195" y="9,09290086109925" />
+        <point x="48,8251763418276" y="9,09292634208489" />
+      </points>
+      <stations>
+        <station name="DuT" offset="0" color="192" trackingid="1" length="4" width="2" height="0">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="100" />
+              <keypoint time="4,9" value="100" />
+              <keypoint time="9,7" value="0" />
+              <keypoint time="30" value="0" />
+              <keypoint time="47" value="100" />
+              <keypoint time="50" value="100" />
+              <keypoint time="54" value="45" />
+              <keypoint time="59" value="0" />
+              <keypoint time="62" value="0" />
+              <keypoint time="80" value="100" />
+              <keypoint time="102,47" value="100" />
+              <keypoint time="107,69" value="0" />
+              <keypoint time="112,65" value="0" />
+              <keypoint time="116,91" value="100" />
+            </keypoints>
+          </attribute>
+        </station>
+        <station name="SimCarEEBL" offset="450" color="16711680" trackingid="2" length="4" width="2" height="0">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="38" value="0" />
+              <keypoint time="47" value="60" />
+              <keypoint time="50" value="60" />
+              <keypoint time="59" value="0" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="50" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="59" value="0" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="99" comment="DangerousSituation" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" comment="EmergencyElectronicBrakeEngaged" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="2" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+        <station name="SimRsuRWW" offset="1214" color="36095" expanded="false" trackingid="3" length="0" width="0" height="0">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0" expanded="false">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="83" value="1" comment="Vehicle_Events_DENM on" />
+              <keypoint time="91" value="0" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="3" comment="Roadworks" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" comment="MajorRoadwork" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="3" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+    <route name="Route2" color="3937500">
+      <points>
+        <point x="48,8222466353941" y="9,09634662254144" />
+        <point x="48,8223402324806" y="9,09630143816758" />
+        <point x="48,8224682153578" y="9,09623618800927" />
+        <point x="48,8225724063745" y="9,096187908247" />
+        <point x="48,8226845437802" y="9,09614499290276" />
+        <point x="48,8227622451481" y="9,09612889964867" />
+        <point x="48,822994465849" y="9,09605782110978" />
+        <point x="48,8231110169293" y="9,09603636343766" />
+        <point x="48,8233335232969" y="9,09601624687005" />
+        <point x="48,8235207096931" y="9,09599747140694" />
+        <point x="48,8237591069945" y="9,0959719904213" />
+        <point x="48,8240857981823" y="9,09594248612214" />
+        <point x="48,824454868727" y="9,09590493519593" />
+        <point x="48,8256545494534" y="9,09581800966412" />
+      </points>
+      <stations>
+        <station name="SimCarEVA" offset="0" color="16711680" expanded="false" trackingid="1" length="4" width="2" height="0">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="99,5" value="0" />
+              <keypoint time="100" value="50" />
+            </keypoints>
+          </attribute>
+          <attribute name="Events_Vehicle_Events_DENM1" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+              <keypoint time="100" value="1" comment="Vehicle_Events_DENM on" />
+            </keypoints>
+            <attribute name="EventPosAndTime" datatype="I" interpolation="linear" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="0" />
+              </keypoints>
+            </attribute>
+            <attribute name="CauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="95" comment="EmergencyVehicleApproaching" />
+              </keypoints>
+            </attribute>
+            <attribute name="SubCauseCode" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" comment="EmergencyVehicleApproaching" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdOriginatingStationId" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+            <attribute name="ActionIdSequenceNumber" datatype="I" interpolation="const" trigger="true" defaultvalue="0">
+              <keypoints>
+                <keypoint time="0" value="1" />
+              </keypoints>
+            </attribute>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+    <route name="correctLaneCorkRoad" color="16711680">
+      <points>
+        <point x="52,2445923505505" y="-7,14406783002447" />
+        <point x="52,2446400206193" y="-7,14354013556603" />
+        <point x="52,2446742954677" y="-7,14328726017708" />
+        <point x="52,2447067827675" y="-7,14308906520015" />
+        <point x="52,244728452917" y="-7,14291564459547" />
+        <point x="52,2447544570823" y="-7,14268559685459" />
+        <point x="52,2447826282443" y="-7,14240953956555" />
+        <point x="52,2447934607379" y="-7,14222373177513" />
+        <point x="52,2448205483701" y="-7,1417937194595" />
+        <point x="52,2448302999299" y="-7,1416468428246" />
+        <point x="52,2448400514713" y="-7,14145395664188" />
+        <point x="52,2448476360021" y="-7,14123275689102" />
+        <point x="52,2448595545478" y="-7,14108057146244" />
+        <point x="52,2448660555713" y="-7,14089122447573" />
+        <point x="52,2448747236017" y="-7,14066648552872" />
+        <point x="52,24488989265" y="-7,14035326668152" />
+        <point x="52,2448942266153" y="-7,14017099808672" />
+        <point x="52,2448985606277" y="-7,13997811190398" />
+        <point x="52,2449180636386" y="-7,13970205461479" />
+        <point x="52,2449213141463" y="-7,13955163878422" />
+        <point x="52,2449278151608" y="-7,13931628224932" />
+        <point x="52,2449299821672" y="-7,13917471440877" />
+        <point x="52,2449559862142" y="-7,13868276616289" />
+        <point x="52,2449635706868" y="-7,13836600811953" />
+        <point x="52,244996075712" y="-7,13759623298652" />
+        <point x="52,2450264136376" y="-7,13667250282691" />
+        <point x="52,2450437496784" y="-7,13621594654135" />
+        <point x="52,2450675866612" y="-7,13579832141176" />
+        <point x="52,2450979246208" y="-7,13479672893994" />
+        <point x="52,245134763502" y="-7,1339048515445" />
+        <point x="52,2452127752381" y="-7,132198959066" />
+        <point x="52,2452647826416" y="-7,13131769925845" />
+        <point x="52,2453102893709" y="-7,13080805503251" />
+        <point x="52,2453861338162" y="-7,13023470527832" />
+        <point x="52,2454966487" y="-7,12961888517185" />
+        <point x="52,2456461698182" y="-7,12913047612197" />
+        <point x="52,2459668801956" y="-7,12827045149072" />
+        <point x="52,2465151138135" y="-7,1271095951983" />
+        <point x="52,2472626931097" y="-7,1255842017164" />
+        <point x="52,2474208761172" y="-7,1253576931716" />
+        <point x="52,24751621824" y="-7,12531522281932" />
+        <point x="52,2475920589145" y="-7,1253364579954" />
+        <point x="52,2476462307454" y="-7,12537184995554" />
+        <point x="52,2477220711977" y="-7,12548510422796" />
+        <point x="52,2478520474712" y="-7,12577177910544" />
+        <point x="52,2479170532795" y="-7,12596289569018" />
+        <point x="52,2480427309055" y="-7,12635928564368" />
+        <point x="52,2481077364378" y="-7,12662118614866" />
+      </points>
+    </route>
+    <route name="incorrectLaneCorkRoad" color="255">
+      <points>
+        <point x="52,2478563923282" y="-7,12433681224789" />
+        <point x="52,2484739346252" y="-7,12309261817336" />
+        <point x="52,249091487296" y="-7,12184840319803" />
+        <point x="52,2478087212535" y="-7,12440564944396" />
+        <point x="52,2477653839528" y="-7,12454013889248" />
+        <point x="52,247739381552" y="-7,12468878512504" />
+        <point x="52,2477133791359" y="-7,12484450974964" />
+        <point x="52,2476873767047" y="-7,12500023437423" />
+        <point x="52,2476570405156" y="-7,12515595899883" />
+        <point x="52,2476223705599" y="-7,12524797809519" />
+        <point x="52,2475140267735" y="-7,1252550564872" />
+        <point x="52,2474143502563" y="-7,12526921327127" />
+        <point x="52,2473016721847" y="-7,1253541539756" />
+        <point x="52,2472583343886" y="-7,12549572181613" />
+        <point x="52,2471586519185" y="-7,12571515196906" />
+        <point x="52,2469722984978" y="-7,12607614996244" />
+        <point x="52,2468682869406" y="-7,12628142333122" />
+        <point x="52,2467166029685" y="-7,12659995097242" />
+        <point x="52,2465345815337" y="-7,12697510574989" />
+        <point x="52,2462528802255" y="-7,12754137711205" />
+        <point x="52,246109861964" y="-7,12784574796921" />
+        <point x="52,2459581754181" y="-7,12815011882636" />
+        <point x="52,2459105023966" y="-7,12824921631474" />
+        <point x="52,2460838585261" y="-7,12833415701905" />
+        <point x="52,2462442124716" y="-7,12850403842771" />
+        <point x="52,2464652398409" y="-7,12851819521178" />
+        <point x="52,2466342600274" y="-7,12846864646759" />
+        <point x="52,2472019875635" y="-7,12827752988289" />
+        <point x="52,2477523711592" y="-7,12805102133807" />
+      </points>
+    </route>
+  </routes>
+  <tapes />
+</scenario>

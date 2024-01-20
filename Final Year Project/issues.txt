@@ -1,0 +1,6 @@
+
+Can run the code on the website with JSFiddle but cannot run it here. getting "H is undefined" 
+
+JSFiddle Link: https://jsfiddle.net/2jw1bfLz/
+
+Example tested: https://developer.here.com/documentation/examples/maps-js/maps/tilted-map-bounds

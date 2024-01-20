@@ -1,0 +1,104 @@
+<scenario name="my scenario" simtime="61,5126050420168" simtimemax="120" version="1" timelinezoom="1" hscrolloffset="0">
+  <routes>
+    <route name="oneWayRoute" color="16711680">
+      <points>
+        <point x="52,2452285407786" y="-7,13189249915435" />
+        <point x="52,2452583495159" y="-7,13149971373065" />
+        <point x="52,2452740866746" y="-7,13131188735242" />
+        <point x="52,245329027844" y="-7,13067320815213" />
+        <point x="52,2454033599054" y="-7,13005564231382" />
+        <point x="52,2454906191259" y="-7,12964921009546" />
+        <point x="52,2458978262737" y="-7,12841935675923" />
+        <point x="52,2464698477387" y="-7,12720006010417" />
+        <point x="52,2472196067163" y="-7,12567989804058" />
+        <point x="52,2474005806405" y="-7,12537375429157" />
+        <point x="52,2475072259723" y="-7,12530513586509" />
+        <point x="52,2476205852035" y="-7,12536563986582" />
+        <point x="52,2476937060816" y="-7,12544897152333" />
+        <point x="52,2477633169692" y="-7,12556740599284" />
+        <point x="52,2478793348726" y="-7,12579480017431" />
+        <point x="52,2480185559561" y="-7,12618326523431" />
+        <point x="52,2480968676236" y="-7,12648172009747" />
+        <point x="52,2481606770271" y="-7,12679912447575" />
+        <point x="52,2482099842326" y="-7,12707389244501" />
+        <point x="52,2482563893033" y="-7,12728707449029" />
+        <point x="52,2483201984797" y="-7,12765659003515" />
+        <point x="52,2483434017934" y="-7,12773238809564" />
+        <point x="52,2483172980646" y="-7,12778449926222" />
+        <point x="52,2482940947373" y="-7,12779871139857" />
+        <point x="52,2482244846824" y="-7,12783187305003" />
+        <point x="52,2481316711061" y="-7,12785555994392" />
+        <point x="52,2469743818201" y="-7,12828666141276" />
+        <point x="52,2467890055286" y="-7,12836149744469" />
+      </points>
+      <stations>
+        <station name="Car1" offset="5" color="16711680" trackingid="1" length="30" width="15" height="20">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="50" />
+              <keypoint time="66,35" value="5" />
+              <keypoint time="75" value="50" />
+              <keypoint time="120" value="0" />
+            </keypoints>
+          </attribute>
+        </station>
+        <station name="oneWayRSU" offset="850" color="32768" trackingid="3" length="5" width="5" height="5">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+            </keypoints>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+    <route name="wrongTurnRoute" color="255">
+      <points>
+        <point x="52,2470560216194" y="-7,12321263758432" />
+        <point x="52,2470698604176" y="-7,12334891275842" />
+        <point x="52,2471059659052" y="-7,12365422062356" />
+        <point x="52,2471700117306" y="-7,12397608570534" />
+        <point x="52,247289892129" y="-7,12444279007394" />
+        <point x="52,2473375155132" y="-7,12469223551232" />
+        <point x="52,2473391577065" y="-7,1248504858442" />
+        <point x="52,2473490108646" y="-7,12505969814736" />
+        <point x="52,2473095982191" y="-7,12535205892998" />
+        <point x="52,24727346993" y="-7,12550762705285" />
+        <point x="52,2472307719193" y="-7,12559882215935" />
+        <point x="52,2464425102571" y="-7,12717596106011" />
+        <point x="52,2459449082055" y="-7,12823275141198" />
+        <point x="52,2459334114772" y="-7,12829712442834" />
+        <point x="52,2459301269866" y="-7,12833735756356" />
+        <point x="52,245946549437" y="-7,12835881523568" />
+        <point x="52,2459728253451" y="-7,12835613302666" />
+        <point x="52,246014361318" y="-7,12832852713505" />
+        <point x="52,2460779279535" y="-7,12832394651848" />
+        <point x="52,2461345851909" y="-7,12835210971314" />
+        <point x="52,2462125914192" y="-7,12843659929711" />
+        <point x="52,2462897708084" y="-7,12848487905938" />
+        <point x="52,2463538178117" y="-7,12850365452248" />
+        <point x="52,2464063691299" y="-7,1285063367315" />
+        <point x="52,2465590951386" y="-7,1284526925512" />
+      </points>
+      <stations>
+        <station name="Car2" offset="0" color="255" trackingid="2" length="30" width="15" height="20">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="50" />
+              <keypoint time="8,79" value="5" />
+              <keypoint time="19,59" value="50" />
+              <keypoint time="61,37" value="0" />
+            </keypoints>
+          </attribute>
+        </station>
+        <station name="wrongTurnRSU" offset="417" color="32768" trackingid="4" length="5" width="5" height="5">
+          <attribute name="Speed" trigger="true" defaultvalue="0">
+            <keypoints>
+              <keypoint time="0" value="0" />
+            </keypoints>
+          </attribute>
+        </station>
+      </stations>
+    </route>
+  </routes>
+  <tapes />
+</scenario>

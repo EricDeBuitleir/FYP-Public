@@ -10,7 +10,7 @@
           <d2p1:Key xmlns:d6p1="http://schemas.datacontract.org/2004/07/System" xmlns:d6p2="System" i:type="d6p2:RuntimeType" z:FactoryType="d6p2:UnitySerializationHolder">
             <Data i:type="d6p2:String" xmlns="">Vector.SymbolSelection.Controls.SymbolSelectionControl</Data>
             <UnityType i:type="d6p2:Int32" xmlns="">4</UnityType>
-            <AssemblyName i:type="d6p2:String" xmlns="">Vector.SymbolSelection, Version=1.12.0.0, Culture=neutral, PublicKeyToken=b273882a063429a6</AssemblyName>
+            <AssemblyName i:type="d6p2:String" xmlns="">Vector.SymbolSelection, Version=1.19.2.0, Culture=neutral, PublicKeyToken=null</AssemblyName>
           </d2p1:Key>
           <d2p1:Value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;SymbolSelectionProperties xmlns:i="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -210,7 +210,14 @@
 &lt;/ColumnProperties&gt;
 &lt;/ColumnsProperties&gt;
 &lt;Key&gt;Embedded/VariableSymbols&lt;/Key&gt;
-&lt;NodeTreeProperties /&gt;
+&lt;NodeTreeProperties&gt;
+&lt;NodeProperties&gt;
+&lt;NodeKey&gt;{RootSymbolItem/{SysVarGroupItem/distanceToCam&lt;/NodeKey&gt;
+&lt;/NodeProperties&gt;
+&lt;NodeProperties&gt;
+&lt;NodeKey&gt;{RootSymbolItem/{SysVarGroupItem/trafficLightState&lt;/NodeKey&gt;
+&lt;/NodeProperties&gt;
+&lt;/NodeTreeProperties&gt;
 &lt;/ViewProperties&gt;
 &lt;/ViewProperties&gt;
 &lt;/SymbolSelectionProperties&gt;</d2p1:Value>
@@ -219,7 +226,7 @@
           <d2p1:Key xmlns:d6p1="http://schemas.datacontract.org/2004/07/System" xmlns:d6p2="System" i:type="d6p2:RuntimeType" z:FactoryType="d6p2:UnitySerializationHolder">
             <Data i:type="d6p2:String" xmlns="">Vector.SymbolSelection.Controls.SymbolSelectionDialog</Data>
             <UnityType i:type="d6p2:Int32" xmlns="">4</UnityType>
-            <AssemblyName i:type="d6p2:String" xmlns="">Vector.SymbolSelection, Version=1.12.0.0, Culture=neutral, PublicKeyToken=b273882a063429a6</AssemblyName>
+            <AssemblyName i:type="d6p2:String" xmlns="">Vector.SymbolSelection, Version=1.19.2.0, Culture=neutral, PublicKeyToken=null</AssemblyName>
           </d2p1:Key>
           <d2p1:Value>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;SymbolSelectionProperties xmlns:i="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -354,102 +361,6 @@
 &lt;Width&gt;100&lt;/Width&gt;
 &lt;/ColumnProperties&gt;
 &lt;ColumnProperties&gt;
-&lt;IsVisible&gt;true&lt;/IsVisible&gt;
-&lt;Position&gt;1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;IsVisible&gt;true&lt;/IsVisible&gt;
-&lt;Position&gt;2&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;IsVisible&gt;true&lt;/IsVisible&gt;
-&lt;Position&gt;3&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;IsVisible&gt;true&lt;/IsVisible&gt;
-&lt;Position&gt;4&lt;/Position&gt;
-&lt;Width&gt;200&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;/ColumnsProperties&gt;
-&lt;Key&gt;96468994/NetworkSymbols&lt;/Key&gt;
-&lt;NodeTreeProperties /&gt;
-&lt;/ViewProperties&gt;
-&lt;ViewProperties&gt;
-&lt;ColumnsProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;IsVisible&gt;true&lt;/IsVisible&gt;
-&lt;Position&gt;0&lt;/Position&gt;
-&lt;Sorting&gt;Ascending&lt;/Sorting&gt;
-&lt;Width&gt;200&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
-&lt;Position&gt;-1&lt;/Position&gt;
-&lt;Width&gt;100&lt;/Width&gt;
-&lt;/ColumnProperties&gt;
-&lt;ColumnProperties&gt;
 &lt;Position&gt;-1&lt;/Position&gt;
 &lt;Width&gt;100&lt;/Width&gt;
 &lt;/ColumnProperties&gt;
@@ -530,11 +441,7 @@
 &lt;/ColumnProperties&gt;
 &lt;/ColumnsProperties&gt;
 &lt;Key&gt;48/VariableSymbols&lt;/Key&gt;
-&lt;NodeTreeProperties&gt;
-&lt;NodeProperties&gt;
-&lt;NodeKey&gt;{RootSymbolItem/{SysVarGroupItem/distanceToCam&lt;/NodeKey&gt;
-&lt;/NodeProperties&gt;
-&lt;/NodeTreeProperties&gt;
+&lt;NodeTreeProperties /&gt;
 &lt;/ViewProperties&gt;
 &lt;/ViewProperties&gt;
 &lt;/SymbolSelectionProperties&gt;</d2p1:Value>

@@ -6,12 +6,12 @@
       <geo-mac value="020000000005"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="wrongTurnRSU"/>
-    <geo-address value="1800020000000005"/>
+    <geo-address value="3C00020000000005"/>
     <latitude value="52.246"/>
     <longitude value="-7.12833"/>
     <speed value="0"/>
     <heading value="22.1"/>
-    <timestamp value="634085674741000"/>
+    <timestamp value="635093213563000"/>
     <color value="BF3F3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -22,12 +22,12 @@
       <geo-mac value="020000000003"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car3"/>
-    <geo-address value="0000020000000003"/>
+    <geo-address value="1400020000000003"/>
     <latitude value="0"/>
     <longitude value="0"/>
     <speed value="0"/>
     <heading value="0"/>
-    <timestamp value="634085674741000"/>
+    <timestamp value="634919174105000"/>
     <color value="3FBF3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -38,12 +38,12 @@
       <geo-mac value="020000000006"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="roundAboutRSU"/>
-    <geo-address value="1800020000000006"/>
+    <geo-address value="3C00020000000006"/>
     <latitude value="0"/>
     <longitude value="0"/>
     <speed value="0"/>
     <heading value="0"/>
-    <timestamp value="634085674741000"/>
+    <timestamp value="635093213563000"/>
     <color value="BFBF3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -55,11 +55,11 @@
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car2"/>
     <geo-address value="1400020000000002"/>
-    <latitude value="52.2462"/>
-    <longitude value="-7.12842"/>
-    <speed value="0"/>
-    <heading value="326.4"/>
-    <timestamp value="634085674741000"/>
+    <latitude value="52.2465"/>
+    <longitude value="-7.1271"/>
+    <speed value="9.56"/>
+    <heading value="230.7"/>
+    <timestamp value="635093213563000"/>
     <color value="3F3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -71,11 +71,11 @@
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car1"/>
     <geo-address value="1400020000000001"/>
-    <latitude value="52.2469"/>
-    <longitude value="-7.12831"/>
-    <speed value="0"/>
-    <heading value="193.8"/>
-    <timestamp value="634085674741000"/>
+    <latitude value="52.2465"/>
+    <longitude value="-7.12718"/>
+    <speed value="7.74"/>
+    <heading value="51.1"/>
+    <timestamp value="635093213563000"/>
     <color value="BF3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -86,12 +86,12 @@
       <geo-mac value="020000000004"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="oneWayRSU"/>
-    <geo-address value="1800020000000004"/>
+    <geo-address value="3C00020000000004"/>
     <latitude value="52.2473"/>
     <longitude value="-7.12817"/>
     <speed value="0"/>
     <heading value="192.8"/>
-    <timestamp value="634085674741000"/>
+    <timestamp value="635093213563000"/>
     <color value="3FBFBF00"/>
     <trace-highlight value="false"/>
   </node>

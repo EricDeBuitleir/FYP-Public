@@ -1,5 +1,6 @@
 /*@!Encoding:1252*/
 /*@!Encoding:1252*/
+/*@!Encoding:1252*/
 includes
 {
   #include "..\DataSources_Templates\ASNV_Template_BaseDatatypes.cin"
@@ -17,15 +18,17 @@ variables
   double vehicleCamLat = 0;
   long stopVehicle = 0;
   double followSpeed = 0;
-
-  
-  
+  long trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
+  int carStationType;
+  int carStationId;
+  int ledState = 0;
+  msTimer lightTimer;
   
 //  double dmin;  // Variable to store the calculated minimum safe distance
-//  double Vr;    // Following vehicle’s longitudinal speed
-//  double P;     // Following vehicle’s response time
-//  double amax;  // Following vehicle’s maximum longitudinal acceleration during response time [m/s^2]
-//  double Bmin;  // Following vehicle’s minimum longitudinal deceleration after response time [m/s^2]
+//  double Vr;    // Following vehicleï¿½s longitudinal speed
+//  double P;     // Following vehicleï¿½s response time
+//  double amax;  // Following vehicleï¿½s maximum longitudinal acceleration during response time [m/s^2]
+//  double Bmin;  // Following vehicleï¿½s minimum longitudinal deceleration after response time [m/s^2]
 //  double Vf;    // Longitudinal speed of the leading vehicle [m/s]
 //  double Bmax;  // Reasonably foreseeable assumed maximum longitudinal deceleration of the leading vehicle [m/s^2]
 //  
@@ -50,6 +53,7 @@ on start
   
   C2xRegisterCallback(OnRx,  "OnRxDENM",    "DENM");
   C2xRegisterCallback(PreTx, "OnPreTxDENM", "DENM");
+  //setTimer(lightTimer, 0);
 
 
 }
@@ -67,32 +71,102 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
   long camHeading;      
   long camStationId;
   long leadSpeed;
-  long redLightState = 0;
+ 
+  long carSpeed;
 
-  
+
   if (!API_GetCAMParams(packet, camPdu))
   {
+
+    camSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
     camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
     camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
-    camSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
+    
+//// Enumeration values for latitude: 
+//// -------------------------------------------------------------
+//// 900000001 : unavailable
+//// -------------------------------------------------------------
+//camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude = 900000001;
+
+//// Enumeration values for longitude: 
+//// -------------------------------------------------------------
+//// 1800000001 : unavailable
+//// -------------------------------------------------------------
+//camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude = 1800000001;
+
+    
+// Enumeration values for stationType: 
+// -------------------------------------------------------------
+// 0 : unknown
+// 1 : pedestrian
+// 2 : cyclist
+// 3 : moped
+// 4 : motorcycle
+// 5 : passengerCar
+// 6 : bus
+// 7 : lightTruck
+// 8 : heavyTruck
+// 9 : trailer
+// 10 : specialVehicles
+// 11 : tram
+// 15 : roadSideUnit
+// -------------------------------------------------------------
+carStationType = camPdu.cam.camParameters.basicContainer.stationType;
+    
+    carStationId = camPdu.header.stationID;
+
+   
+// Enumeration values for speedValue: 
+// -------------------------------------------------------------
+// 16383 : unavailable
+// -------------------------------------------------------------
+   carSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
 
     distanceToCam = API_PosCalcDistance(vehicleCamLat, vehicleCamLong, camLat, camLong);
-
+  
     // Debug print statement to check the conditions
-  //  write("Debug: distanceToCam = %f, camSpeed = %d, isWithin5MetersPrinted = %d", distanceToCam, camSpeed, isWithin5MetersPrinted);
-
-    // Check conditions for RSU based on speed and distance
-    if (distanceToCam <= 20 && camStationType == 6)       
+    //write("Debug: distanceToCam = %f, camSpeed = %d, stationType = %d, stationID = %d ", distanceToCam, camSpeed, carStationType, carStationId);
+//      write("Debug: vehicleCamLat: %f, vehicleCamLong: %f", vehicleCamLat, vehicleCamLong);
+//      write("Debug: camLat: %f, camLong: %f", camLat, camLong);
+//      write("Debug: Distance to Cam: %f", distanceToCam);
+    
+    
+       // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
+   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+    if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
     {
-      write("Test: Vehicle is within 20 meters of a stationary RSU. Distance: %f meters", distanceToCam);
-      @sysvar::distanceToCam::distanceToCam = distanceToCam;
+      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+    
+     @sysvar::distanceToCam::distanceToCam = 1;
+      setTimer(lightTimer, 0);
+      
 
+      
+    }
+
+    
+//    else
+    
+//        @sysvar::distanceToCam::distanceToCam = 0;
+    
   
     }
-  
-    }
-  
 }
+
+// TRIED WRAPING INTO A FUNCTION BELOW, NEED TO FIND OUT HOW TO JUST TURN ON THE LED FOR A FEW SECONDS AS USING AN ELSE STATEMENT CONSTANTLY OPERATES ONE STATE OF LED
+// =====================================
+//void CheckRSUAndLED(double distanceToCam, int carStationType, long carStationId, long carSpeed ){
+//      // Check conditions for RSU based on speed and distance
+//   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+//    if (distanceToCam <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+//    {
+//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+//    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
+//      @sysvar::distanceToCam::distanceToCam = 1;
+
+      
+//    }
+//}
 
 // Callback function before sending CAM messages from IL
 void OnPreTxCAM(LONG packet)
@@ -115,28 +189,29 @@ void OnPreTxCAM(LONG packet)
 }
 
 // Callback function on receiving DENM messages
-//void OnRxDENM(long channel, long dir, long radioChannel, long signalStrength, long signalQuality, long packet)
-//{
-//  struct DENM denmPdu;
-//  int type;
-//  int stationId;
-//  
-//  write(" *** DENM Received ");
-//   if (!API_GetDENMparams(packet, denmPdu))
-//  {
-//    stationId = denmPdu.header.stationID;
-//    write(" DENM stationId = %d", stationId);
-//    type = denmPdu.denm.situation.eventType.causeCode;
-//    write(" DENM Cause Code = %d", type);
-//  }
-//    
-//}
+void OnRxDENM(long channel, long dir, long radioChannel, long signalStrength, long signalQuality, long packet)
+{
+  struct DENM denmPdu;
+  int type;
+  int stationId;
+  
+  write(" *** DENM Received ");
+   if (!API_GetDENMparams(packet, denmPdu))
+  {
+    stationId = denmPdu.header.stationID;
+    write(" DENM stationId = %d", stationId);
+    type = denmPdu.denm.situation.eventType.causeCode;
+    write(" DENM Cause Code = %d", type);
+  }
+    
+}
 
 // Callback function before sending DENM messages from IL
 void OnPreTxDENM(LONG packet)
 {
 
 }
+
 
 
 on key 'x'
@@ -165,8 +240,38 @@ on key 'x'
   C2xCompletePacket(packet);
   C2xOutputPacket(packet);
 }
+void trafficLightGreen() {
+    @sysvar::trafficLightState::trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
+}
+void trafficLightYellow() {
+    @sysvar::trafficLightState::trafficLightState = 1; // 0 = Green, 1 = Yellow, 2 = Red
+}
+
+void trafficLightRed() {
+    @sysvar::trafficLightState::trafficLightState = 2; // 0 = Green, 1 = Yellow, 2 = Red
+}
+
+on timer lightTimer {
+    switch (trafficLightState) {
+        case 0: // Green
+            trafficLightYellow(); // Light switches from green to yellow
+              setTimer(lightTimer, 5000);
+            break;
+        case 1: // Yellow
+            trafficLightRed();// Light switches from yellow to red
+              setTimer(lightTimer, 30000);
+            break;
+        case 2: // Red
+            trafficLightGreen();// Light switches from red to green
+              setTimer(lightTimer, 20000);
+            break;
+            
+    }
+}
 
 
+
+    
 //double calcDMin() {
   
   // writing each part of equation in code
@@ -185,3 +290,10 @@ on key 'x'
   
   
 //}
+
+
+
+
+// =============================================
+
+

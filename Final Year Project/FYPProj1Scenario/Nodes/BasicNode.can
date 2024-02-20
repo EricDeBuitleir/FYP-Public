@@ -133,14 +133,14 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
     
        // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
    // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-    if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-    {
-      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+//    if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+//    {
+//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
     
-     @sysvar::distanceToCam::distanceToCam = 1;
-      setTimer(lightTimer, 0);
+//     @sysvar::distanceToCam::distanceToCam = 1;
+//      setTimer(lightTimer, 0);
       
-
+      CheckRSUAndLED();
       
     }
 
@@ -154,19 +154,23 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
 }
 
 // TRIED WRAPING INTO A FUNCTION BELOW, NEED TO FIND OUT HOW TO JUST TURN ON THE LED FOR A FEW SECONDS AS USING AN ELSE STATEMENT CONSTANTLY OPERATES ONE STATE OF LED
+// SIMILAR CASE HAPPENING WITH THE TRAFFIC LIGHT, STATES ONLY CHANGING ONCE IN THE SCENARIO NO MATTER IF I HAVE THE ELSE STATEMENT OR NOT. COMMENT RIGHT ABOVE STILL AND ISSUE
+
+
+
 // =====================================
-//void CheckRSUAndLED(double distanceToCam, int carStationType, long carStationId, long carSpeed ){
-//      // Check conditions for RSU based on speed and distance
-//   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    if (distanceToCam <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    {
-//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
-//    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
-//      @sysvar::distanceToCam::distanceToCam = 1;
+void CheckRSUAndLED(double distanceToRSU, int carStationType, long carStationId, long carSpeed ){
+      // Check conditions for RSU based on speed and distance
+   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+    if (distanceToRSU <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+    {
+      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
+      @sysvar::distanceToCam::distanceToCam = 1;
 
       
-//    }
-//}
+    }
+}
 
 // Callback function before sending CAM messages from IL
 void OnPreTxCAM(LONG packet)

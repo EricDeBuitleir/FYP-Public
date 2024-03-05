@@ -42,7 +42,7 @@
             </keypoints>
           </attribute>
         </station>
-        <station name="oneWayRSU" offset="850" color="32768" trackingid="3" length="5" width="5" height="5">
+        <station name="oneWayRSU" offset="850" color="32768" trackingid="3" length="2" width="2" height="2">
           <attribute name="Speed" trigger="true" defaultvalue="0">
             <keypoints>
               <keypoint time="0" value="0" />
@@ -90,7 +90,7 @@
             </keypoints>
           </attribute>
         </station>
-        <station name="wrongTurnRSU" offset="417" color="32768" trackingid="4" length="5" width="5" height="5">
+        <station name="wrongTurnRSU" offset="417" color="32768" trackingid="4" length="2" width="2" height="3">
           <attribute name="Speed" trigger="true" defaultvalue="0">
             <keypoints>
               <keypoint time="0" value="0" />

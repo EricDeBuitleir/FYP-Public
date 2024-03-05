@@ -23,6 +23,7 @@ variables
   int carStationId;
   int ledState = 0;
   msTimer lightTimer;
+  int carSteerAngle;
   
 //  double dmin;  // Variable to store the calculated minimum safe distance
 //  double Vr;    // Following vehicle�s longitudinal speed
@@ -112,8 +113,7 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
 // 15 : roadSideUnit
 // -------------------------------------------------------------
 carStationType = camPdu.cam.camParameters.basicContainer.stationType;
-    
-    carStationId = camPdu.header.stationID;
+carStationId = camPdu.header.stationID;
 
    
 // Enumeration values for speedValue: 
@@ -121,6 +121,7 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
 // 16383 : unavailable
 // -------------------------------------------------------------
    carSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
+   carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
 
     distanceToCam = API_PosCalcDistance(vehicleCamLat, vehicleCamLong, camLat, camLong);
   
@@ -129,18 +130,21 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
 //      write("Debug: vehicleCamLat: %f, vehicleCamLong: %f", vehicleCamLat, vehicleCamLong);
 //      write("Debug: camLat: %f, camLong: %f", camLat, camLong);
 //      write("Debug: Distance to Cam: %f", distanceToCam);
+ //       write("Debug: Steering wheel angle : %f", distanceToCam);
+     write("Test: Car ID %d has %d steeting wheel angle. ", carStationId, carSteerAngle);
     
     
        // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
-   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    {
-//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
-    
-//     @sysvar::distanceToCam::distanceToCam = 1;
-//      setTimer(lightTimer, 0);
+   if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )
       
-      CheckRSUAndLED();
+  //  if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+   {
+     write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+    
+    @sysvar::distanceToCam::distanceToCam = 1;
+     setTimer(lightTimer, 0);
+      
+//      CheckRSUAndLED();
       
     }
 
@@ -150,7 +154,7 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
 //        @sysvar::distanceToCam::distanceToCam = 0;
     
   
-    }
+   }
 }
 
 // TRIED WRAPING INTO A FUNCTION BELOW, NEED TO FIND OUT HOW TO JUST TURN ON THE LED FOR A FEW SECONDS AS USING AN ELSE STATEMENT CONSTANTLY OPERATES ONE STATE OF LED
@@ -159,18 +163,18 @@ carStationType = camPdu.cam.camParameters.basicContainer.stationType;
 
 
 // =====================================
-void CheckRSUAndLED(double distanceToRSU, int carStationType, long carStationId, long carSpeed ){
-      // Check conditions for RSU based on speed and distance
-   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-    if (distanceToRSU <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-    {
-      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
-    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
-      @sysvar::distanceToCam::distanceToCam = 1;
+//void CheckRSUAndLED(double distanceToRSU, int carStationType, long carStationId, long carSpeed ){
+//      // Check conditions for RSU based on speed and distance
+//   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+//    if (distanceToRSU <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
+//    {
+//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+//    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
+//      @sysvar::distanceToCam::distanceToCam = 1;
 
       
-    }
-}
+//    }
+//}
 
 // Callback function before sending CAM messages from IL
 void OnPreTxCAM(LONG packet)

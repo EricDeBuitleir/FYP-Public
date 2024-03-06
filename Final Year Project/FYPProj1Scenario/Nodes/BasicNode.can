@@ -122,7 +122,8 @@ carStationId = camPdu.header.stationID;
 // -------------------------------------------------------------
    carSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
    carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
-
+ 
+ 
     distanceToCam = API_PosCalcDistance(vehicleCamLat, vehicleCamLong, camLat, camLong);
   
     // Debug print statement to check the conditions

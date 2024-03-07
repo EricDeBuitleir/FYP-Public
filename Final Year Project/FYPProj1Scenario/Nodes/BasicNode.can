@@ -12,34 +12,70 @@ includes
   #include "Position.cin"
 }
 
+//variables
+//{
+//  double vehicleCamLong = 0;
+//  double vehicleCamLat = 0;
+//  long stopVehicle = 0;
+//  double followSpeed = 0;
+//  long trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
+//  int carStationType;
+//  int carStationId;
+//  int ledState = 0;
+//  msTimer lightTimer;
+//  int carSteerAngle;
+//  int junctionLength = 30;
+//  int junctionWidth = 30;
+//  int junctionHeight = 100;
+//  int carPositionLat;
+//  int carPositionLong;
+//  struct VehiclePosition {
+//      double xPosition;
+//      double yPosition;
+//      int vehicleID;
+      
+//  } vehiclePosition;
+  
+////  double dmin;  // Variable to store the calculated minimum safe distance
+////  double Vr;    // Following vehicle�s longitudinal speed
+////  double P;     // Following vehicle�s response time
+////  double amax;  // Following vehicle�s maximum longitudinal acceleration during response time [m/s^2]
+////  double Bmin;  // Following vehicle�s minimum longitudinal deceleration after response time [m/s^2]
+////  double Vf;    // Longitudinal speed of the leading vehicle [m/s]
+////  double Bmax;  // Reasonably foreseeable assumed maximum longitudinal deceleration of the leading vehicle [m/s^2]
+////  
+////  
+////  double eqPT1 = 0;
+////  double eqPT2 = 0;
+////  double eqPT3 = 0;
+  
+//  long camTestSpeed;
+//struct CAM camTest; 
+//}
+
+
+
+
 variables
 {
-  double vehicleCamLong = 0;
-  double vehicleCamLat = 0;
-  long stopVehicle = 0;
-  double followSpeed = 0;
-  long trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
-  int carStationType;
-  int carStationId;
-  int ledState = 0;
-  msTimer lightTimer;
-  int carSteerAngle;
-  
-//  double dmin;  // Variable to store the calculated minimum safe distance
-//  double Vr;    // Following vehicle�s longitudinal speed
-//  double P;     // Following vehicle�s response time
-//  double amax;  // Following vehicle�s maximum longitudinal acceleration during response time [m/s^2]
-//  double Bmin;  // Following vehicle�s minimum longitudinal deceleration after response time [m/s^2]
-//  double Vf;    // Longitudinal speed of the leading vehicle [m/s]
-//  double Bmax;  // Reasonably foreseeable assumed maximum longitudinal deceleration of the leading vehicle [m/s^2]
-//  
-//  
-//  double eqPT1 = 0;
-//  double eqPT2 = 0;
-//  double eqPT3 = 0;
-  
-  long camTestSpeed;
-struct CAM camTest; 
+    double vehicleCamLong = 0;
+    double vehicleCamLat = 0;
+    long stopVehicle = 0;
+    double followSpeed = 0;
+    long trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
+    int carStationType;
+    int carStationId;
+    int ledState = 0;
+    msTimer lightTimer;
+    int carSteerAngle;
+    int junctionLength = 30;
+    int junctionWidth = 30;
+    int junctionHeight = 100;
+    int carPositionLat;
+    int carPositionLong;
+    int isApproachingJunction = 0;
+    int isTurningAllowed = 0;
+    int sendProcessSignal;
 }
 
 // On start, callback functions for the most common application messages CAM and DENM are registered.
@@ -83,19 +119,6 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
     camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
     camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
     
-//// Enumeration values for latitude: 
-//// -------------------------------------------------------------
-//// 900000001 : unavailable
-//// -------------------------------------------------------------
-//camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude = 900000001;
-
-//// Enumeration values for longitude: 
-//// -------------------------------------------------------------
-//// 1800000001 : unavailable
-//// -------------------------------------------------------------
-//camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude = 1800000001;
-
-    
 // Enumeration values for stationType: 
 // -------------------------------------------------------------
 // 0 : unknown
@@ -132,7 +155,7 @@ carStationId = camPdu.header.stationID;
 //      write("Debug: camLat: %f, camLong: %f", camLat, camLong);
 //      write("Debug: Distance to Cam: %f", distanceToCam);
  //       write("Debug: Steering wheel angle : %f", distanceToCam);
-     write("Test: Car ID %d has %d steeting wheel angle. ", carStationId, carSteerAngle);
+//     write("Test: Car ID %d has %d steeting wheel angle. ", carStationId, carSteerAngle);
     
     
        // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
@@ -158,24 +181,6 @@ carStationId = camPdu.header.stationID;
    }
 }
 
-// TRIED WRAPING INTO A FUNCTION BELOW, NEED TO FIND OUT HOW TO JUST TURN ON THE LED FOR A FEW SECONDS AS USING AN ELSE STATEMENT CONSTANTLY OPERATES ONE STATE OF LED
-// SIMILAR CASE HAPPENING WITH THE TRAFFIC LIGHT, STATES ONLY CHANGING ONCE IN THE SCENARIO NO MATTER IF I HAVE THE ELSE STATEMENT OR NOT. COMMENT RIGHT ABOVE STILL AND ISSUE
-
-
-
-// =====================================
-//void CheckRSUAndLED(double distanceToRSU, int carStationType, long carStationId, long carSpeed ){
-//      // Check conditions for RSU based on speed and distance
-//   // if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    if (distanceToRSU <= 20  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
-//    {
-//      write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
-//    //  @sysvar::distanceToCam::distanceToCam = distanceToCam;
-//      @sysvar::distanceToCam::distanceToCam = 1;
-
-      
-//    }
-//}
 
 // Callback function before sending CAM messages from IL
 void OnPreTxCAM(LONG packet)
@@ -280,6 +285,8 @@ on timer lightTimer {
 
 
 
+
+
     
 //double calcDMin() {
   
@@ -301,8 +308,74 @@ on timer lightTimer {
 //}
 
 
+// Function to determine if a vehicle is approaching a junction
+int isApproachingJunction(int carPositionLat, int carPositionLong) {
+    // Add logic here to determine if the vehicle is approaching a junction
+    // You might compare the vehicle's position with the coordinates of known junctions
+    // For now condition based on the latitude and longitude
+    if (carPositionLat > 0 && carPositionLong > 0) {
+        return 1; // Vehicle is approaching a junction
+    } else {
+        return 0; // Vehicle is not approaching a junction
+    }
+}
+
+// Function to determine if a vehicle is allowed to turn at a junction
+int isTurningAllowed(int carStationId, int carSteerAngle) {
+    // logic here to determine if the vehicle is allowed to turn
+    // might check the current traffic regulations, road signs, or other factors
+    // right now only checking specific car ID and turning angle
+    if (carStationId % 2 == 0 && carSteerAngle > 180) {
+        return 0; // Turning is not allowed
+    } else {
+        return 1; // Turning is allowed
+    }
+}
 
 
+
+void VehiclePosition(long packet, struct CAM camPdu)
+ {
+  int vehiclePosition;
+
+  int carPositionLat;
+  int carPositionLong;
+  int  carStationId;
+  double camLong;        
+  double camLat;         
+  long camStationType;   
+  double distanceToCam;   
+  long camSpeed;        
+  long camHeading;      
+  long camStationId;
+  long leadSpeed;
+  
+  long carSpeed;
+
+   
+   
+if (!API_GetCAMParams(packet, camPdu))
+    {
+        // Extract relevant information from the CAM message
+        double vehicleLongPosition = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+        double vehicleLatPosition = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+        carStationId = camPdu.header.stationID;
+        carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
+
+        // Process position updates from vehicles
+        if (isApproachingJunction(carPositionLat, carPositionLong)) {
+            // Vehicle is approaching the junction
+            if (isTurningAllowed(carStationId, carSteerAngle)) {
+                // Allow the vehicle to proceed through the junction
+//                sendProceedSignal(carStationId); <- This might be a SysVar showing LED based on this
+            } else {
+                // Disallow the vehicle from proceeding (e.g., signal to stop)
+//                sendStopSignal(carStationId); <- This might be a SysVar showing LED based on this
+
+            }
+        }
+    }
+}
 // =============================================
 
 

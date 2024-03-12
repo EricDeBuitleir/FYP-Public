@@ -67,12 +67,12 @@ variables
     int carStationId;
     int ledState = 0;
     msTimer lightTimer;
-    int carSteerAngle;
+    int carSteerAngle = 0;
     int junctionLength = 30;
     int junctionWidth = 30;
     int junctionHeight = 100;
-    int carPositionLat;
-    int carPositionLong;
+    int carPositionLat = 0;
+    int carPositionLong = 0;
     int isApproachingJunction = 0;
     int isTurningAllowed = 0;
     int sendProcessSignal;
@@ -228,32 +228,32 @@ void OnPreTxDENM(LONG packet)
 
 
 
-on key 'x'
-{
+//on key 'x'
+//{
   
-  /*
-    Example of how to transmit a DENM messaage.  Note that other parameters such as Station Id, relevance area etc. would need to be
-    included in a realistic DENM message.
-  */
+//  /*
+//    Example of how to transmit a DENM messaage.  Note that other parameters such as Station Id, relevance area etc. would need to be
+//    included in a realistic DENM message.
+//  */
   
-  long packet;
-  double eventPosLat, eventPosLon, eventPosElev;
+//  long packet;
+//  double eventPosLat, eventPosLon, eventPosElev;
 
-  eventPosLat = 48.8233831512772;
-  eventPosLon = 9.093631893371;
-  eventPosElev = 305;
+//  eventPosLat = 48.8233831512772;
+//  eventPosLon = 9.093631893371;
+//  eventPosElev = 305;
 
-  packet = C2xInitPacket("DENM");
-  C2xSetTokenInt(packet, "DENM", "denm.situation.eventType.causeCode", 91); // VehicleBreakDown
-  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.latitude", eventPosLat);
-  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.longitude", eventPosLon);
-  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.altitude.altitudeValue", eventPosElev);
+//  packet = C2xInitPacket("DENM");
+//  C2xSetTokenInt(packet, "DENM", "denm.situation.eventType.causeCode", 91); // VehicleBreakDown
+//  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.latitude", eventPosLat);
+//  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.longitude", eventPosLon);
+//  C2xSetTokenPhys(packet, "DENM", "denm.management.eventPosition.altitude.altitudeValue", eventPosElev);
 
- // C2xApplyPathHistory(packet, eventPosLat, eventPosLon, 305, 800, 20, 1);
+// // C2xApplyPathHistory(packet, eventPosLat, eventPosLon, 305, 800, 20, 1);
 
-  C2xCompletePacket(packet);
-  C2xOutputPacket(packet);
-}
+//  C2xCompletePacket(packet);
+//  C2xOutputPacket(packet);
+//}
 void trafficLightGreen() {
     @sysvar::trafficLightState::trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
 }
@@ -282,10 +282,6 @@ on timer lightTimer {
             
     }
 }
-
-
-
-
 
     
 //double calcDMin() {
@@ -336,10 +332,10 @@ int isTurningAllowed(int carStationId, int carSteerAngle) {
 
 void VehiclePosition(long packet, struct CAM camPdu)
  {
-  int vehiclePosition;
+  int vehiclePosition =0 ;
 
-  int carPositionLat;
-  int carPositionLong;
+  int carPositionLat = 0;
+  int carPositionLong = 0;
   int  carStationId;
   double camLong;        
   double camLat;         
@@ -357,8 +353,8 @@ void VehiclePosition(long packet, struct CAM camPdu)
 if (!API_GetCAMParams(packet, camPdu))
     {
         // Extract relevant information from the CAM message
-        double vehicleLongPosition = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
-        double vehicleLatPosition = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+        carPositionLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+        carPositionLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
         carStationId = camPdu.header.stationID;
         carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
 

@@ -76,6 +76,7 @@ variables
     int isApproachingJunction = 0;
     int isTurningAllowed = 0;
     int sendProcessSignal;
+    
 }
 
 // On start, callback functions for the most common application messages CAM and DENM are registered.
@@ -370,6 +371,15 @@ if (!API_GetCAMParams(packet, camPdu))
 
             }
         }
+    }
+    
+map junction {
+    lane straightLane {
+        id = 1;
+        dimensions = {
+            {100, 50},  // Start point of the lane
+            {300, 50}   // End point of the lane
+        };
     }
 }
 // =============================================

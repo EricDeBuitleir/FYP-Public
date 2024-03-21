@@ -76,7 +76,10 @@ variables
     int isApproachingJunction = 0;
     int isTurningAllowed = 0;
     int sendProcessSignal;
-    
+    int laneBoundaries[4][2] = {{100, 50}, {300, 50}, {300, 100}, {100, 100}};
+    int carPositionX = 0; 
+    int carPositionY = 0;  
+    int carSteeringAngle =0; 
 }
 
 // On start, callback functions for the most common application messages CAM and DENM are registered.
@@ -374,14 +377,26 @@ if (!API_GetCAMParams(packet, camPdu))
     }
     
 map junction {
-    lane straightLane {
+    lane dynamicLane {
         id = 1;
         dimensions = {
-            {100, 50},  // Start point of the lane
-            {300, 50}   // End point of the lane
+            {laneBoundaries[0][0], laneBoundaries[0][1]},
+            {laneBoundaries[1][0], laneBoundaries[1][1]},
+            {laneBoundaries[2][0], laneBoundaries[2][1]},
+            {laneBoundaries[3][0], laneBoundaries[3][1]}
         };
+        
+        on entering {
+            if (carPositionX > 250 && carPositionY > 75 && carSteeringAngle < 45) {
+                // Vehicle is attempting to make a right turn but it's incorrect
+                // Implement action here (e.g., trigger a warning)
+                // Example: sendWarningSignal();
+                write("Incorrect right turn detected!");
+            }
+        }
     }
 }
+
 // =============================================
 
 

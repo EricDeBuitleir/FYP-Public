@@ -78,8 +78,13 @@ variables
     int sendProcessSignal;
     int laneBoundaries[4][2] = {{100, 50}, {300, 50}, {300, 100}, {100, 100}};
     int carPositionX = 0; 
-    int carPositionY = 0;  
-    int carSteeringAngle =0; 
+    int carPositionY = 0; 
+    int previousCarX = 0;
+    int previousCarY = 0;
+    int carSteeringAngle =0;
+    int dimensions;
+    int junction = 0;
+    int laneId;
 }
 
 // On start, callback functions for the most common application messages CAM and DENM are registered.
@@ -122,6 +127,10 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
     camSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
     camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
     camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+    
+     carPositionX = (int)(camLong * 1e7); 
+      carPositionY = (int)(camLat * 1e7); 
+    
     
 // Enumeration values for stationType: 
 // -------------------------------------------------------------
@@ -258,6 +267,11 @@ void OnPreTxDENM(LONG packet)
 //  C2xCompletePacket(packet);
 //  C2xOutputPacket(packet);
 //}
+
+
+
+
+
 void trafficLightGreen() {
     @sysvar::trafficLightState::trafficLightState = 0; // 0 = Green, 1 = Yellow, 2 = Red
 }
@@ -288,49 +302,31 @@ on timer lightTimer {
 }
 
     
-//double calcDMin() {
-  
-  // writing each part of equation in code
-//  eqPT1 = ((Vr * P) + (0.5 * amax * P * P));
-//  eqPT2 = (Vr + P*amax) * (Vr + P*amax) / (2 * Bmin);
-//  eqPT3 = (Vf)*(Vf) / (2*Bmax);
-//  
-  // putting equation together to calculate safe distance
-//  
-//  dmin = (eqPT1 + eqPT2 - eqPT3);
-//  if (( dmin > 2))
-//    write("The minimum safe distance is: %f", dmin);
-//  
-//  return dmin;
-//  
-  
-  
-//}
 
 
 // Function to determine if a vehicle is approaching a junction
-int isApproachingJunction(int carPositionLat, int carPositionLong) {
-    // Add logic here to determine if the vehicle is approaching a junction
-    // You might compare the vehicle's position with the coordinates of known junctions
-    // For now condition based on the latitude and longitude
-    if (carPositionLat > 0 && carPositionLong > 0) {
-        return 1; // Vehicle is approaching a junction
-    } else {
-        return 0; // Vehicle is not approaching a junction
-    }
-}
+//int isApproachingJunction(int carPositionLat, int carPositionLong) {
+//    // Add logic here to determine if the vehicle is approaching a junction
+//    // You might compare the vehicle's position with the coordinates of known junctions
+//    // For now condition based on the latitude and longitude
+//    if (carPositionLat > 0 && carPositionLong > 0) {
+//        return 1; // Vehicle is approaching a junction
+//    } else {
+//        return 0; // Vehicle is not approaching a junction
+//    }
+//}
 
-// Function to determine if a vehicle is allowed to turn at a junction
-int isTurningAllowed(int carStationId, int carSteerAngle) {
-    // logic here to determine if the vehicle is allowed to turn
-    // might check the current traffic regulations, road signs, or other factors
-    // right now only checking specific car ID and turning angle
-    if (carStationId % 2 == 0 && carSteerAngle > 180) {
-        return 0; // Turning is not allowed
-    } else {
-        return 1; // Turning is allowed
-    }
-}
+//// Function to determine if a vehicle is allowed to turn at a junction
+//int isTurningAllowed(int carStationId, int carSteerAngle) {
+//    // logic here to determine if the vehicle is allowed to turn
+//    // might check the current traffic regulations, road signs, or other factors
+//    // right now only checking specific car ID and turning angle
+//    if (carStationId % 2 == 0 && carSteerAngle > 180) {
+//        return 0; // Turning is not allowed
+//    } else {
+//        return 1; // Turning is allowed
+//    }
+//}
 
 
 
@@ -362,40 +358,137 @@ if (!API_GetCAMParams(packet, camPdu))
         carStationId = camPdu.header.stationID;
         carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
 
-        // Process position updates from vehicles
-        if (isApproachingJunction(carPositionLat, carPositionLong)) {
-            // Vehicle is approaching the junction
-            if (isTurningAllowed(carStationId, carSteerAngle)) {
-                // Allow the vehicle to proceed through the junction
-//                sendProceedSignal(carStationId); <- This might be a SysVar showing LED based on this
-            } else {
-                // Disallow the vehicle from proceeding (e.g., signal to stop)
-//                sendStopSignal(carStationId); <- This might be a SysVar showing LED based on this
+//        // Process position updates from vehicles
+//        if (isApproachingJunction(carPositionLat, carPositionLong)) {
+//            // Vehicle is approaching the junction
+//            if (isTurningAllowed(carStationId, carSteerAngle)) {
+//                // Allow the vehicle to proceed through the junction
+////                sendProceedSignal(carStationId); <- This might be a SysVar showing LED based on this
+//            } else {
+//                // Disallow the vehicle from proceeding (e.g., signal to stop)
+////                sendStopSignal(carStationId); <- This might be a SysVar showing LED based on this
 
-            }
-        }
+//            }
+//        }
     }
-    
-map junction {
-    lane dynamicLane {
-        id = 1;
-        dimensions = {
-            {laneBoundaries[0][0], laneBoundaries[0][1]},
-            {laneBoundaries[1][0], laneBoundaries[1][1]},
-            {laneBoundaries[2][0], laneBoundaries[2][1]},
-            {laneBoundaries[3][0], laneBoundaries[3][1]}
-        };
+ }
+ 
+ 
+
+
+ 
+//void junction {
+//    lane dynamicLane {
+//        id = 1;
+//        dimensions = {
+//            {laneBoundaries[0][0], laneBoundaries[0][1]},
+//            {laneBoundaries[1][0], laneBoundaries[1][1]},
+//            {laneBoundaries[2][0], laneBoundaries[2][1]},
+//            {laneBoundaries[3][0], laneBoundaries[3][1]}
+//        };
         
-        on entering {
-            if (carPositionX > 250 && carPositionY > 75 && carSteeringAngle < 45) {
-                // Vehicle is attempting to make a right turn but it's incorrect
-                // Implement action here (e.g., trigger a warning)
-                // Example: sendWarningSignal();
-                write("Incorrect right turn detected!");
-            }
-        }
+//        on entering {
+//            if (carPositionX > 250 && carPositionY > 75 && carSteeringAngle < 45) {
+//                // Vehicle is attempting to make a right turn but it's incorrect
+//                // Implement action here (e.g., trigger a warning)
+//                // Example: sendWarningSignal();
+//                write("Incorrect right turn detected!");
+//            }
+//        }
+//    }
+//}
+
+
+ 
+void carWillContinueRight(struct CAM camPdu) {
+    int carX = 0;
+    int carY = 0;
+    carX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+    carY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+    
+    if (carX > previousCarX && carY < previousCarY) {
+        write("Car is continuing to turn right.");
+        
+        previousCarX = carX;
+        previousCarY = carY;
+    } else {
+        // Car is not continuing to turn right
+        write("Car is not continuing to turn right.");
+        // Implement additional actions here if needed
     }
 }
+ 
+ void defineLaneBoundaries(int laneId, int carPositionX, int carPositionY, struct CAM camPdu) {
+    int laneStartX, laneStartY, laneEndX, laneEndY;
+    carPositionX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+    carPositionY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+    // Define lane boundaries based on the laneId
+    switch (laneId) {
+        case 1: // left lane going up
+            laneStartX = 100;
+            laneStartY = 50;
+            laneEndX = 300;
+            laneEndY = 50;
+            break;
+        case 2: // right lane going up
+            laneStartX = 300;
+            laneStartY = 50;
+            laneEndX = 300;
+            laneEndY = 100;
+            break;
+        case 3: // left lane going down
+            laneStartX = 300;
+            laneStartY = 100;
+            laneEndX = 100;
+            laneEndY = 100;
+            break;
+        case 4: // right lane going down
+            laneStartX = 100;
+            laneStartY = 100;
+            laneEndX = 100;
+            laneEndY = 50;
+            break;
+            return;
+    }
+    
+        // Check if the car's position violates lane boundaries
+      if (carPositionX > laneStartX && carPositionX < laneEndX && carPositionY > laneStartY && carPositionY < laneEndY) {
+          // Car is within the lane boundaries, check if it's lane 1
+          if (laneId == 1 ) {
+              // Car is in lane 1, check turning direction
+              if (carSteeringAngle >= 45 ) {
+                  // Car is turning right while in lane 1, trigger a warning
+                  write("Warning: Car is turning right while in lane 1!");
+                  
+                  // sendWarningSignal();
+              } else {
+                if (carWillContinueRight(carPositionX, carPositionY)){
+                  write("Warning: Car is continueing to turn right in lane 1");
+                }
+              }
+          }
+      
+          if (laneId == 2 || laneId == 4) {
+                  write("Warning: Car is on the wrong side of the road");
+                  
+                  // sendWarningSignal();
+              }
+          }
+       else {
+         
+          write("Warning: Car is outside lane boundaries!");
+           // sendWarningSignal();
+          
+      }
+  }
+  
+  
+//on message dynamicLaneEntering {
+//    // Extract lane ID from the received message
+//    int laneId = dynamicLaneEntering.laneId;
+//    // Define lane boundaries for the entered lane
+//    defineLaneBoundaries(laneId);
+//}
 
 // =============================================
 

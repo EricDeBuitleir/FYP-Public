@@ -82,6 +82,8 @@ variables
     int previousCarX = 0;
     int previousCarY = 0;
     int carSteeringAngle =0;
+    int carSteeringAng = 0;
+    
     int dimensions;
     int junction = 0;
     int laneId;
@@ -172,12 +174,12 @@ carStationId = camPdu.header.stationID;
     
     
        // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
-   if (distanceToCam <= 0.7  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )
-      
+   if (distanceToCam <= 10  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )
+      defineLaneBoundaries(45, 1, carPositionX, carPositionY, camPdu);
   //  if (distanceToCam <= 30  && distanceToCam > 0 && carStationType == 5 && carSpeed > 0  )       
    {
-     write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
-    
+    // write("Test: Car ID %d is within 0.7 meters of a stationary RSU. Distance: %f meters", carStationId, distanceToCam);
+   
     @sysvar::distanceToCam::distanceToCam = 1;
      setTimer(lightTimer, 0);
       
@@ -415,11 +417,16 @@ void carWillContinueRight(struct CAM camPdu) {
         // Car is not continuing to turn right
         write("Car is not continuing to turn right.");
         // Implement additional actions here if needed
+      
     }
 }
  
- void defineLaneBoundaries(int laneId, int carPositionX, int carPositionY, struct CAM camPdu) {
+
+ 
+ void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int carPositionY, struct CAM camPdu) {
     int laneStartX, laneStartY, laneEndX, laneEndY;
+  
+    carSteerAng = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
     carPositionX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
     carPositionY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
     // Define lane boundaries based on the laneId
@@ -452,19 +459,21 @@ void carWillContinueRight(struct CAM camPdu) {
     }
     
         // Check if the car's position violates lane boundaries
-      if (carPositionX > laneStartX && carPositionX < laneEndX && carPositionY > laneStartY && carPositionY < laneEndY) {
+      if (carPositionX > laneStartX + 20 && carPositionX < laneEndX - 20 && carPositionY > laneStartY + 20 && carPositionY < laneEndY - 20) {
           // Car is within the lane boundaries, check if it's lane 1
           if (laneId == 1 ) {
               // Car is in lane 1, check turning direction
-              if (carSteeringAngle >= 45 ) {
+              if (carSteeringAng >= 45 ) {
                   // Car is turning right while in lane 1, trigger a warning
-                  write("Warning: Car is turning right while in lane 1!");
+                  write("Warning: Car is looking to turn right while in lane 1!");
                   
                   // sendWarningSignal();
               } else {
-                if (carWillContinueRight(carPositionX, carPositionY)){
+//                if (carWillContinueRight(carPositionX, carPositionY)){
+                  carWillContinueRight(camPdu);
+                
                   write("Warning: Car is continueing to turn right in lane 1");
-                }
+                
               }
           }
       

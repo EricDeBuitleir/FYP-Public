@@ -67,10 +67,11 @@
         <point x="52,2464425102571" y="-7,12717596106011" />
         <point x="52,2459449082055" y="-7,12823275141198" />
         <point x="52,2459334114772" y="-7,12829712442834" />
+        <point x="52,2459252002503" y="-7,12832528762373" />
         <point x="52,2459301269866" y="-7,12833735756356" />
         <point x="52,245946549437" y="-7,12835881523568" />
         <point x="52,2459728253451" y="-7,12835613302666" />
-        <point x="52,246014361318" y="-7,12832852713505" />
+        <point x="52,2460071813671" y="-7,12835979840644" />
         <point x="52,2460779279535" y="-7,12832394651848" />
         <point x="52,2461345851909" y="-7,12835210971314" />
         <point x="52,2462125914192" y="-7,12843659929711" />
@@ -80,17 +81,18 @@
         <point x="52,2465590951386" y="-7,1284526925512" />
       </points>
       <stations>
-        <station name="Car2" offset="0" color="255" trackingid="2" length="30" width="15" height="20">
+        <station name="Car2" offset="2" color="255" trackingid="2" length="30" width="15" height="20">
           <attribute name="Speed" trigger="true" defaultvalue="0">
             <keypoints>
               <keypoint time="0" value="50" />
               <keypoint time="8,79" value="5" />
               <keypoint time="19,59" value="50" />
-              <keypoint time="61,37" value="0" />
+              <keypoint time="51,27" value="0" />
+              <keypoint time="59,61" value="10" />
             </keypoints>
           </attribute>
         </station>
-        <station name="wrongTurnRSU" offset="417" color="32768" trackingid="4" length="2" width="2" height="3">
+        <station name="wrongTurnRSU" offset="389" color="32768" trackingid="4" length="2" width="2" height="3">
           <attribute name="Speed" trigger="true" defaultvalue="0">
             <keypoints>
               <keypoint time="0" value="0" />
@@ -98,6 +100,10 @@
           </attribute>
         </station>
       </stations>
+      <refpoints>
+        <refpoint name="laneOneStart" offset="390" color="14772545" id="1" />
+        <refpoint name="laneOneEnd" offset="391" color="14772545" id="1" />
+      </refpoints>
     </route>
   </routes>
   <tapes />

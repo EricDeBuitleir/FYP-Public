@@ -1,4 +1,4 @@
-<scenario name="my scenario" simtime="0" simtimemax="120" version="1" timelinezoom="1" hscrolloffset="0">
+<scenario name="my scenario" simtime="54,0649819494585" simtimemax="120" version="1" timelinezoom="1" hscrolloffset="0">
   <routes>
     <route name="oneWayRoute" color="16711680">
       <points>
@@ -36,7 +36,7 @@
           <attribute name="Speed" trigger="true" defaultvalue="0">
             <keypoints>
               <keypoint time="0" value="50" />
-              <keypoint time="66,35" value="5" />
+              <keypoint time="63,34" value="5" />
               <keypoint time="75" value="50" />
               <keypoint time="120" value="0" />
             </keypoints>
@@ -87,8 +87,8 @@
               <keypoint time="0" value="50" />
               <keypoint time="8,79" value="5" />
               <keypoint time="19,59" value="50" />
-              <keypoint time="51,27" value="0" />
-              <keypoint time="59,61" value="10" />
+              <keypoint time="57,36" value="0" />
+              <keypoint time="71,91" value="10" />
             </keypoints>
           </attribute>
         </station>

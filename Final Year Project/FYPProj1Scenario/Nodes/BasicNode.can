@@ -63,15 +63,16 @@ variables
       int startY;
       int endX;
       int endY;  
-  };
-  
+      } 
+      lanes[1] = {
+      {0, -7.128107, 52.246004, -7.128207, 52.246104}
+      };
+
    const int numLanes = 4;
   struct Lane currentLane;
-  struct Lane lanes[numLanes];
+//  struct Lane lanes[numLanes];
 
-//  struct Lane lanes[4] = {
-//    {1, 100, 50, 300, 50}
-//  };
+
 
   
   
@@ -111,11 +112,13 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
   long leadSpeed;
  
   long carSpeed;
-
+  double vehiclePosX;
+  double vehiclePosY;
 
   if (!API_GetCAMParams(packet, camPdu))
   {
-
+    vehiclePosX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude;
+    vehiclePosY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude;
     camSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
     camLong = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
     camLat = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
@@ -124,9 +127,10 @@ void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, lon
       carPositionY = (int)(camLat * 1e7); 
     
     // detmine the lane ID based on function below
-    
- //   laneId = setLaneId(camLong, camLat, 0, 0);
-    laneId = setLaneId(camLong, camLat);
+    vehiclePosX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+    vehiclePosY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+    laneId = setLaneId(vehiclePosX, vehiclePosY);
+//    laneId = setLaneId(camLong, camLat);
  
 // Enumeration values for stationType: 
 // -------------------------------------------------------------
@@ -153,8 +157,12 @@ carStationId = camPdu.header.stationID;
 // 16383 : unavailable
 // -------------------------------------------------------------
    carSpeed = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.speed.speedValue;
-   carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
+   //carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
+   carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.isValidFlag = 45;
  
+
+
+
  
     distanceToCam = API_PosCalcDistance(vehicleCamLat, vehicleCamLong, camLat, camLong);
 //    distanceToCam = API_PosCalcDistance(carPositionX, carPositionY, lane1X, lane1Y);
@@ -166,13 +174,13 @@ carStationId = camPdu.header.stationID;
 //      write("Debug: camLat: %f, camLong: %f", camLat, camLong);
 //      write("Debug: Distance to Cam: %f", distanceToCam);
  //       write("Debug: Steering wheel angle : %f", distanceToCam);
-//     write("Test: Car ID %d has %d steeting wheel angle. ", carStationId, carSteerAngle);
+  //   write("Test: Car ID %d has %d steeting wheel angle. ", carStationId, carSteerAngle);
     
     
     // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
     if (distanceToCam <= 10 && distanceToCam > 0 && carStationType == 5 && carSpeed > 0) {
-        //defineLaneBoundaries(45, 1, carPositionX, carPositionY, camPdu, lane1X, lane1Y);
-        defineLaneBoundaries(carPositionX, carPositionY, carSteerAngle);
+        defineLaneBoundaries(carSteerAngle, 1, carPositionX, carPositionY, camPdu, lane1X, lane1Y);
+//        defineLaneBoundaries(carPositionX, carPositionY, carSteerAngle);
       
         @sysvar::distanceToCam::distanceToCam = 1;
         setTimer(lightTimer, 0);
@@ -216,13 +224,13 @@ void OnRxDENM(long channel, long dir, long radioChannel, long signalStrength, lo
   int type;
   int stationId;
   
-  write(" *** DENM Received ");
+  //write(" *** DENM Received ");
    if (!API_GetDENMparams(packet, denmPdu))
   {
     stationId = denmPdu.header.stationID;
-    write(" DENM stationId = %d", stationId);
+   // write(" DENM stationId = %d", stationId);
     type = denmPdu.denm.situation.eventType.causeCode;
-    write(" DENM Cause Code = %d", type);
+   // write(" DENM Cause Code = %d", type);
   }
     
 }
@@ -327,6 +335,9 @@ if (!API_GetCAMParams(packet, camPdu))
         carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
 
 
+
+
+
     }
  }
  
@@ -352,114 +363,66 @@ void carWillContinueRight(struct CAM camPdu) {
     }
 }
  
-
-  
-
-//void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int carPositionY, struct CAM camPdu, double rsuPositionX, double rsuPositionY) {
-//    int laneStartX, laneStartY, laneEndX, laneEndY;
-    
-//    carSteerAng = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue;
-//    carPositionX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
-//    carPositionY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
-//    laneId = setLaneId(carPositionX, carPositionY, rsuPositionX, rsuPositionY);
-//    if (laneId != -1) {
-//      write("Debug: Lane ID = %d", laneId); // Debug print statement to check the lane ID
-//  }
-
-
-
 // =====================================================================================================================================
 
 // WORKING ONE
+  
 
-//    // Define lane boundaries based on the laneId
-//    switch (laneId) {
-//        case 1: // left lane going up
-//            laneStartX = 100;
-//            laneStartY = 50;
-//            laneEndX = 300;
-//            laneEndY = 50;
-//            break;
-//        // Define boundaries for other lanes as needed
-//    }
-//    write("Debug: Car Position X = %d, Car Position Y = %d", carPositionX, carPositionY);
+void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int carPositionY, struct CAM camPdu, double rsuPositionX, double rsuPositionY) {
+    int laneStartX, laneStartY, laneEndX, laneEndY;
     
-//    // Check if the car's position violates lane boundaries
-//    if (carPositionX > laneStartX + 20 && carPositionX < laneEndX - 20 && carPositionY > laneStartY + 20 && carPositionY < laneEndY - 20) {
-//        // Car is within the lane boundaries, check if it's lane 1
-//        if (laneId == 1) {
-//            // Car is in lane 1, check turning direction
-//            if (carSteerAng >= 45) {
-//                // Car is turning right while in lane 1, trigger a warning
-//                write("Warning: Car is looking to turn right while in lane 1!");
-//                // Signal that turning right is not allowed
-//                trafficLightRed();
-//            } else {
-//                // Car is not turning right, reset signals
-//                trafficLightGreen(); // Or any other appropriate action
-//            }
-//        }
-//    } else {
-//        // Car is outside lane boundaries, trigger a warning
-//        write("Warning: Car is outside lane boundaries!");
-//        // Signal that the car is outside lane boundaries        
-//    }
-//}
+    carSteerAng = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.steeringWheelAngleValue = 45;
+    carPositionX = camPdu.cam.camParameters.basicContainer.referencePosition.longitude / 1e07;
+    carPositionY = camPdu.cam.camParameters.basicContainer.referencePosition.latitude / 1e07;
+   // laneId = setLaneId(carPositionX, carPositionY, rsuPositionX, rsuPositionY);
+    laneId = setLaneId(carPositionX, carPositionY);
   
-
-// =====================================================================================================================================
-
-// NEW ONE
-
-// Function to define lane boundaries and check car position
-void defineLaneBoundaries(double carX, double carY, int carSteerAng) {
-  
-    
-  
-    int laneId = 0;
-    int i;
-    laneId = setLaneId(carX, carY);
-    write("Debug: Car Position X = %f, Car Position Y = %f", carX, carY);
-    if (laneId == -1) {
-        // Car is not within any lane
-        write("Warning: Car is not within any lane!");
-        // Additional actions can be implemented here if needed
-        return;
+    if (laneId != -1) {
+      write("Debug: Lane ID = %d", laneId); // Debug print statement to check the lane ID
+  }
+    // Define lane boundaries based on the laneId
+    switch (laneId) {
+        case 1: // left lane going up
+        laneStartX = rsuPositionX - 10;
+        laneStartY = rsuPositionY - 10; 
+        laneEndX = rsuPositionX + 100;   
+        laneEndY = rsuPositionY + 50;   
+          
+//          laneStartX = lanes[0].startX;
+//          laneStartY = lanes[0].startY;
+//          laneEndX = lanes[0].endX;
+//          laneEndY = lanes[0].endY;
+          
+        break;
+        // Define boundaries for other lanes as needed
     }
+    write("Debug: Car Position X = %d, Car Position Y = %d", carPositionX, carPositionY);
     
-    // Find the current lane based on laneId
-    for (i = 0; i < numLanes; i++) {
-        if (lanes[i].id == laneId) {
-            currentLane.id = lanes[i].id;
-            currentLane.startX = lanes[i].startX;
-            currentLane.startY = lanes[i].startY;
-            currentLane.endX = lanes[i].endX;
-            currentLane.endY = lanes[i].endY;
-            break;
-        }
-    }
-
     // Check if the car's position violates lane boundaries
-    if (carX > currentLane.startX + 20 && carX < currentLane.endX - 20 &&
-        carY > currentLane.startY + 20 && carY < currentLane.endY - 20) {
-        // Car is within the lane boundaries
-        if (laneId == 1 && carSteerAng >= 45) {
-            // Car is turning right in lane 1
-            write("Warning: Car is turning right in lane 1!");
-            // Trigger additional actions if needed
+    if (carPositionX >= laneStartX && carPositionX <= laneEndX && carPositionY >= laneStartY && carPositionY <= laneEndY) {
+        // Car is within the lane boundaries, check if it's lane 1
+        if (laneId == 1) {
+            // Car is in lane 1, check turning direction
+            if (carSteerAng >= 44) {
+                // Car is turning right while in lane 1, trigger a warning
+                write("Warning: Car is looking to turn right while in lane 1!");
+                // Signal that turning right is not allowed
+                trafficLightRed();
+            } else {
+                // Car is not turning right, reset signals
+                trafficLightGreen(); // Or any other appropriate action
+            }
         }
     } else {
-        // Car is outside lane boundaries
+        // Car is outside lane boundaries, trigger a warning
         write("Warning: Car is outside lane boundaries!");
-        // Trigger additional actions if needed
+        // Signal that the car is outside lane boundaries        
     }
 }
-
-
-
-
+  
 
 // =====================================================================================================================================
+
 
 
 // Going to have to make a method to define the lanes as well as which lane the car is in.
@@ -476,73 +439,48 @@ void defineLaneBoundaries(double carX, double carY, int carSteerAng) {
 // WORKING
 
 
-//int setLaneId(double carX, double carY, int rsuPositionX, int rsuPositionY) {
+int setLaneId(double carX, double carY) {
 
-//    // Array for our 4 lanes
-//    double rsuPositionsX[4] = {100, 300, 300, 100};
-//    double rsuPositionsY[4] = {50, 50, 100, 100};
+    // Array for our 1 lane, can add more
+    double rsuPositionsX[1] = {-7.128107};
+    double rsuPositionsY[1] = {52.246004};
  
-//    int i;
-//    double dMin = 0; // Initialize to maximum possible value
-//    int closestRSU = -1; // Initialize to an invalid value since 0 could be a valid index
+    int i;
+    double dMin = 0; // Initialize to maximum possible value
+    int closestRSU = -1; // Initialize to an invalid value since 0 could be a valid index
     
     
-  
-    
-    
-//    for (i = 0; i < 4; i++) {
-//      double distance = 0;
-//        // Calculate distance using Euclidean distance formula
-////        distance = ((carX - rsuPositionsX[i]) * (carX - rsuPositionsX[i])) + ((carY - rsuPositionsY[i]) * (carY - rsuPositionsY[i]));  // had to hard code 'power' as trying to import math.h was crashing CANoe
-//        distance = ((carX - (lanes[i].startX +  lanes[i].endX)) * (carX - (lanes[i].startX +  lanes[i].endX))) + ((carY - lanes[i].startY) * (carY - lanes[i].endY));  // had to hard code 'power' as trying to import math.h was crashing CANoe
+    for (i = 0; i < 1; i++) {
+      double distance = 0;
+      double laneCenterX = 0;
+      double laneCenterY = 0;
       
-//        if (distance < dMin) {
-//            dMin = distance;
-////            closestRSU = i;
-//            closestRSU = lanes[i].id;
-//        }
-//    }
+      
+      laneCenterX = (lanes[i].startX + lanes[i].endX) / 2.0;
+      laneCenterY = (lanes[i].startY + lanes[i].endY) / 2.0;
+        // Calculate distance using Euclidean distance formula
+//        distance = ((carX - (lanes[i].startX +  lanes[i].endX)) * (carX - (lanes[i].startX +  lanes[i].endX))) + ((carY - lanes[i].startY) * (carY - lanes[i].endY));  // had to hard code 'power' as trying to import math.h was crashing CANoe
+      distance = ((carX - laneCenterX) * (carX - laneCenterX) + (carY - laneCenterY) * (carY - laneCenterY));
+        if (distance < dMin) {
+            dMin = distance;
+//            closestRSU = i;
+            closestRSU = lanes[i].id;
+        }
+    }
     
-//    return closestRSU; // Return the closest RSU index
-//}
+    return closestRSU; // Return the closest RSU index
+}
 
 
 // =====================================================================================================================================
 
 
-// NEW ONE
-
-// Function to calculate the closest lane to the car's position
-int setLaneId(double carX, double carY) {
-    int closestLaneId = -1;
-    double dx;
-    double dy;
-    int i;
-    double minDistanceSquared = 0; // Initialize to maximum possible value
-    double distanceSquared = 0;
-
-    // Iterate through all lanes to find the closest one
-    for (i = 0; i < numLanes; i++) {
-         dx = carX - lanes[i].startX;
-         dy = carY - lanes[i].startY;
-         distanceSquared = dx * dx + dy * dy;
-        if (distanceSquared < minDistanceSquared) {
-            minDistanceSquared = distanceSquared;
-            closestLaneId = lanes[i].id;
-        }
-    }
-
-    return closestLaneId;
-}
 
 
-
-// Function to calculate the square of a number
-
-// =============================================
+//// =============================================
 
 
 // ISSUES RIGHT NOW
 
-// 1) Lane doesn't seem to be getting defined as constantly getting out of bounds
-// 2) Steering wheel angle doesn't seem to be getting read.
+// 1) Lane doesn't seem to be getting defined as constantly getting out of bounds. need to look into my setLaneId() function
+// 2) Steering wheel angle doesn't seem to be getting read. Set value manually but still having issues with first issue above

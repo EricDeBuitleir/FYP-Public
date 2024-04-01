@@ -13,8 +13,8 @@
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl1" ControlName="Switch/Indicator 1">
       <Property Name="Name">SwitchControl1</Property>
-      <Property Name="Size">55, 72</Property>
-      <Property Name="Location">393, 111</Property>
+      <Property Name="Size">61, 79</Property>
+      <Property Name="Location">358, 70</Property>
       <Property Name="StateCnt">4</Property>
       <Property Name="SwitchValues">1;4;0;1;2;3</Property>
       <Property Name="SwitchValuesRx">1;4;0;1;2;3</Property>
@@ -27,7 +27,7 @@
       <Property Name="ReadOnlyControl">True</Property>
     </Object>
     <Property Name="Name">Panel</Property>
-    <Property Name="Size">580, 270</Property>
+    <Property Name="Size">773, 350</Property>
     <Property Name="BackColor">White</Property>
   </Object>
 </Panel>

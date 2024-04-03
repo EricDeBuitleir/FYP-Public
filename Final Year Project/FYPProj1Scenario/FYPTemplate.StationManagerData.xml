@@ -6,12 +6,12 @@
       <geo-mac value="020000000005"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="wrongTurnRSU"/>
-    <geo-address value="3C00020000000005"/>
+    <geo-address value="0000020000000005"/>
     <latitude value="52.246"/>
     <longitude value="-7.12811"/>
     <speed value="0"/>
     <heading value="232.4"/>
-    <timestamp value="638992844057000"/>
+    <timestamp value="639150752369000"/>
     <color value="BF3F3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -43,7 +43,7 @@
     <longitude value="0"/>
     <speed value="0"/>
     <heading value="0"/>
-    <timestamp value="638992844057000"/>
+    <timestamp value="639150752369000"/>
     <color value="BFBF3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -56,10 +56,10 @@
     <assigned-node db-name="EU_ApplMsg" name="Car2"/>
     <geo-address value="1400020000000002"/>
     <latitude value="52.246"/>
-    <longitude value="-7.12822"/>
-    <speed value="3.33"/>
+    <longitude value="-7.12813"/>
+    <speed value="4.14"/>
     <heading value="232.4"/>
-    <timestamp value="638992844057000"/>
+    <timestamp value="639150752369000"/>
     <color value="3F3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -70,12 +70,12 @@
       <geo-mac value="020000000001"/>
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car1"/>
-    <geo-address value="1400020000000001"/>
-    <latitude value="52.247"/>
-    <longitude value="-7.12617"/>
-    <speed value="4.35"/>
+    <geo-address value="0000020000000001"/>
+    <latitude value="52.2469"/>
+    <longitude value="-7.12629"/>
+    <speed value="4.79"/>
     <heading value="51.1"/>
-    <timestamp value="638992844057000"/>
+    <timestamp value="639150752369000"/>
     <color value="BF3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -91,7 +91,7 @@
     <longitude value="-7.12817"/>
     <speed value="0"/>
     <heading value="192.8"/>
-    <timestamp value="638992844057000"/>
+    <timestamp value="639150752369000"/>
     <color value="3FBFBF00"/>
     <trace-highlight value="false"/>
   </node>

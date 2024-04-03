@@ -63,12 +63,13 @@ variables
       int startY;
       int endX;
       int endY;  
-      } 
-      lanes[1] = {
-      {0, -7.128107, 52.246004, -7.128207, 52.246104}
-      };
+      } lanes[1];
+     // lanes[1] = {
+     // {0, -7.128107, 52.246004, -7.128207, 52.246104}
+        
+     // };
 
-   const int numLanes = 4;
+   int numLanes = elCount(lanes);
   struct Lane currentLane;
 //  struct Lane lanes[numLanes];
 
@@ -93,9 +94,25 @@ on start
   C2xRegisterCallback(OnRx,  "OnRxDENM",    "DENM");
   C2xRegisterCallback(PreTx, "OnPreTxDENM", "DENM");
   //setTimer(lightTimer, 0);
-
-
+  
+//  C2xRegisterCallback(OnRx,  "OnRxSPAT",    "SPAT");
+//  C2xRegisterCallback(OnRx,  "OnRxMAP",    "MAP");
+  
+  
+    lanes[0].id = 1;
+    lanes[0].startX = -7.128107;
+    lanes[0].startY = 52.246004;
+    lanes[0].endX = -7.128207;
+    lanes[0].endY = 52.246104;
+  
+//    lanes[0].id = 1;
+//    lanes[0].startX = convertGPStoSimCoord(-7.128107); // Convert from GPS to simulation coordinates
+//    lanes[0].startY = convertGPStoSimCoord(52.246004);
+//    lanes[0].endX = convertGPStoSimCoord(-7.128207);
+//    lanes[0].endY = convertGPStoSimCoord(52.246104);
 }
+
+
 
 // Callback function on receiving CAM messages
 void OnRxCAM(long channel, long dir, long radioChannel, long signalStrength, long signalQuality, long packet)
@@ -365,7 +382,7 @@ void carWillContinueRight(struct CAM camPdu) {
  
 // =====================================================================================================================================
 
-// WORKING ONE
+// Kind of WORKING ONE
   
 
 void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int carPositionY, struct CAM camPdu, double rsuPositionX, double rsuPositionY) {
@@ -383,20 +400,20 @@ void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int car
     // Define lane boundaries based on the laneId
     switch (laneId) {
         case 1: // left lane going up
-        laneStartX = rsuPositionX - 10;
-        laneStartY = rsuPositionY - 10; 
-        laneEndX = rsuPositionX + 100;   
-        laneEndY = rsuPositionY + 50;   
+//        laneStartX = rsuPositionX - 10;
+//        laneStartY = rsuPositionY - 10; 
+//        laneEndX = rsuPositionX + 100;   
+//        laneEndY = rsuPositionY + 50;   
           
-//          laneStartX = lanes[0].startX;
-//          laneStartY = lanes[0].startY;
-//          laneEndX = lanes[0].endX;
-//          laneEndY = lanes[0].endY;
+          laneStartX = lanes[0].startX;
+          laneStartY = lanes[0].startY;
+          laneEndX = lanes[0].endX;
+          laneEndY = lanes[0].endY;
           
         break;
         // Define boundaries for other lanes as needed
     }
-    write("Debug: Car Position X = %d, Car Position Y = %d", carPositionX, carPositionY);
+    write("Debug: Car Position X = %d, Car Position Y = %d, Debug: Lanes Start X = %d, Lane Start Y = %d, Lane End X = %d, Lane End Y = %d", carPositionX, carPositionY, laneStartX, laneStartY, laneEndX, laneEndY);
     
     // Check if the car's position violates lane boundaries
     if (carPositionX >= laneStartX && carPositionX <= laneEndX && carPositionY >= laneStartY && carPositionY <= laneEndY) {
@@ -450,7 +467,7 @@ int setLaneId(double carX, double carY) {
     int closestRSU = -1; // Initialize to an invalid value since 0 could be a valid index
     
     
-    for (i = 0; i < 1; i++) {
+    for (i = 0; i < numLanes; i++) {
       double distance = 0;
       double laneCenterX = 0;
       double laneCenterY = 0;
@@ -461,7 +478,7 @@ int setLaneId(double carX, double carY) {
         // Calculate distance using Euclidean distance formula
 //        distance = ((carX - (lanes[i].startX +  lanes[i].endX)) * (carX - (lanes[i].startX +  lanes[i].endX))) + ((carY - lanes[i].startY) * (carY - lanes[i].endY));  // had to hard code 'power' as trying to import math.h was crashing CANoe
       distance = ((carX - laneCenterX) * (carX - laneCenterX) + (carY - laneCenterY) * (carY - laneCenterY));
-        if (distance < dMin) {
+      if (distance < dMin) {
             dMin = distance;
 //            closestRSU = i;
             closestRSU = lanes[i].id;
@@ -469,6 +486,7 @@ int setLaneId(double carX, double carY) {
     }
     
     return closestRSU; // Return the closest RSU index
+    write("cloest RSU: ", closestRSU);
 }
 
 
@@ -482,5 +500,6 @@ int setLaneId(double carX, double carY) {
 
 // ISSUES RIGHT NOW
 
-// 1) Lane doesn't seem to be getting defined as constantly getting out of bounds. need to look into my setLaneId() function
+// 1) Lane doesn't seem to be getting defined as constantly getting out of bounds. POSSIBLE IT COULD BE COORDS NOT BEING RECIEVED CORRECTLY. CAPL doesn't take in co-ords as values. need to convert
 // 2) Steering wheel angle doesn't seem to be getting read. Set value manually but still having issues with first issue above
+

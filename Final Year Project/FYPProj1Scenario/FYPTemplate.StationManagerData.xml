@@ -11,7 +11,7 @@
     <longitude value="-7.12811"/>
     <speed value="0"/>
     <heading value="232.4"/>
-    <timestamp value="639150752369000"/>
+    <timestamp value="639411522780000"/>
     <color value="BF3F3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -43,7 +43,7 @@
     <longitude value="0"/>
     <speed value="0"/>
     <heading value="0"/>
-    <timestamp value="639150752369000"/>
+    <timestamp value="639411522780000"/>
     <color value="BFBF3F00"/>
     <trace-highlight value="false"/>
   </node>
@@ -55,11 +55,11 @@
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car2"/>
     <geo-address value="1400020000000002"/>
-    <latitude value="52.246"/>
-    <longitude value="-7.12813"/>
-    <speed value="4.14"/>
-    <heading value="232.4"/>
-    <timestamp value="639150752369000"/>
+    <latitude value="52.2469"/>
+    <longitude value="-7.12634"/>
+    <speed value="11.45"/>
+    <heading value="230.7"/>
+    <timestamp value="639411522780000"/>
     <color value="3F3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -71,11 +71,11 @@
     </frame-info>
     <assigned-node db-name="EU_ApplMsg" name="Car1"/>
     <geo-address value="0000020000000001"/>
-    <latitude value="52.2469"/>
-    <longitude value="-7.12629"/>
-    <speed value="4.79"/>
-    <heading value="51.1"/>
-    <timestamp value="639150752369000"/>
+    <latitude value="52.2462"/>
+    <longitude value="-7.12784"/>
+    <speed value="8.71"/>
+    <heading value="52.5"/>
+    <timestamp value="639411522780000"/>
     <color value="BF3FBF00"/>
     <trace-highlight value="false"/>
   </node>
@@ -91,7 +91,7 @@
     <longitude value="-7.12817"/>
     <speed value="0"/>
     <heading value="192.8"/>
-    <timestamp value="639150752369000"/>
+    <timestamp value="639411522780000"/>
     <color value="3FBFBF00"/>
     <trace-highlight value="false"/>
   </node>

@@ -1,4 +1,4 @@
-<scenario name="my scenario" simtime="54,0649819494585" simtimemax="120" version="1" timelinezoom="1" hscrolloffset="0">
+<scenario name="my scenario" simtime="34,3682310469314" simtimemax="120" version="1" timelinezoom="1" hscrolloffset="0">
   <routes>
     <route name="oneWayRoute" color="16711680">
       <points>
@@ -30,6 +30,14 @@
         <point x="52,2481316711061" y="-7,12785555994392" />
         <point x="52,2469743818201" y="-7,12828666141276" />
         <point x="52,2467890055286" y="-7,12836149744469" />
+        <point x="52,2468119997702" y="-7,12846676976122" />
+        <point x="52,2468835899807" y="-7,12842779387989" />
+        <point x="52,2469599527446" y="-7,12841999870363" />
+        <point x="52,2470458606968" y="-7,12835763729351" />
+        <point x="52,2471604043744" y="-7,12831086623593" />
+        <point x="52,2472367666619" y="-7,1282718903546" />
+        <point x="52,2473179014482" y="-7,12826409517836" />
+        <point x="52,2474276718054" y="-7,12820952894451" />
       </points>
       <stations>
         <station name="Car1" offset="5" color="16711680" trackingid="1" length="30" width="15" height="20">
@@ -38,7 +46,8 @@
               <keypoint time="0" value="50" />
               <keypoint time="63,34" value="5" />
               <keypoint time="75" value="50" />
-              <keypoint time="120" value="0" />
+              <keypoint time="103,97" value="0" />
+              <keypoint time="108,59" value="5" />
             </keypoints>
           </attribute>
         </station>
@@ -78,7 +87,7 @@
         <point x="52,2462897708084" y="-7,12848487905938" />
         <point x="52,2463538178117" y="-7,12850365452248" />
         <point x="52,2464063691299" y="-7,1285063367315" />
-        <point x="52,2465590951386" y="-7,1284526925512" />
+        <point x="52,2465161406863" y="-7,1284526925512" />
       </points>
       <stations>
         <station name="Car2" offset="2" color="255" trackingid="2" length="30" width="15" height="20">

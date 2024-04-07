@@ -39,7 +39,7 @@ variables
     int isApproachingJunction = 0;
     int isTurningAllowed = 0;
     int sendProcessSignal;
-    int laneBoundaries[4][2] = {{100, 50}, {300, 50}, {300, 100}, {100, 100}};
+   // int laneBoundaries[4][2] = {{100, 50}, {300, 50}, {300, 100}, {100, 100}};
     int carPositionX = 0; 
     int carPositionY = 0; 
     int previousCarX = 0;
@@ -178,8 +178,6 @@ carStationId = camPdu.header.stationID;
    carSteerAngle = camPdu.cam.camParameters.highFrequencyContainer.basicVehicleContainerHighFrequency.steeringWheelAngle.isValidFlag = 45;
  
 
-
-
  
     distanceToCam = API_PosCalcDistance(vehicleCamLat, vehicleCamLong, camLat, camLong);
 //    distanceToCam = API_PosCalcDistance(carPositionX, carPositionY, lane1X, lane1Y);
@@ -195,12 +193,11 @@ carStationId = camPdu.header.stationID;
     
     
     // CHECK CONDITIONS FOR RSU BASED ON SPEED AND POSITION
-    if (distanceToCam <= 10 && distanceToCam > 0 && carStationType == 5 && carSpeed > 0) {
+    if (distanceToCam <= 10 && distanceToCam > 0 && carStationType == 5 && carSpeed >! 0) {
         defineLaneBoundaries(carSteerAngle, 1, carPositionX, carPositionY, camPdu, lane1X, lane1Y);
 //        defineLaneBoundaries(carPositionX, carPositionY, carSteerAngle);
       
-        @sysvar::distanceToCam::distanceToCam = 1;
-        setTimer(lightTimer, 0);
+        write("Two Car2X services ping each other");
         // CheckRSUAndLED();
     }
 
@@ -425,6 +422,7 @@ void defineLaneBoundaries(int carSteerAng, int laneId, int carPositionX, int car
                 write("Warning: Car is looking to turn right while in lane 1!");
                 // Signal that turning right is not allowed
                 trafficLightRed();
+               
             } else {
                 // Car is not turning right, reset signals
                 trafficLightGreen(); // Or any other appropriate action

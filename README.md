@@ -10,3 +10,6 @@ Lane Correction Assist is a simulation project based on the CANoe software archi
 * CANoe Liscence
 * Car2X package
   
+## More Information
+
+visit the website for more information at: https://ericdebuitleir.github.io/FYP-WebPage/
